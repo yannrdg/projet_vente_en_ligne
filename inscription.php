@@ -45,6 +45,8 @@ try
                         $sth->bindParam(':ville',$ville);
                         $sth->bindParam(':cb',$cb);
                         $sth->execute();
+                        $ajoutlogin = $bdd->prepare("INSERT INTO visiter (login) SELECT login FROM visiteur");
+                        $ajoutlogin->execute(array($login));
                         $erreur = "Votre compte a bien été créé";
                         }
                         else 
