@@ -31,7 +31,7 @@ if(isset($_POST['forminscription']))
                     }
                     else 
                     {
-                        $erreur = "Vos mdp ne correpsondent pas";
+                        $erreur = "Vos mdp ne correspondent pas";
                     }
                 }
                 else 
