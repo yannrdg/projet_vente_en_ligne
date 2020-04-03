@@ -31,7 +31,7 @@ if(isset($_POST['forminscription']))
                     }
                     else 
                     {
-                        $erreur = "Vos mdp ne correspondent pas";
+                        $erreur = "Vos mots de passe ne correspondent pas";
                     }
                 }
                 else 
