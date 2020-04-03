@@ -34,7 +34,7 @@ try
                     {
                         if($mdp == $mdp2)
                         {
-                        $sth = $bdd->prepare("INSERT INTO visiteur(login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
+                        $sth = $bdd->prepare("INSERT INTO VISITEUR(login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
                         $sth->bindParam(':login',$login);
                         $sth->bindParam(':mdp',$mdp);
                         $sth->bindParam(':mail',$mail);

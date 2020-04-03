@@ -2,7 +2,7 @@
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=projet', 'root', 'root');
 
-if(isset($_GET['login']))
+if(isset($_SESSION['login']))
 {
 
 ?>
@@ -15,7 +15,7 @@ if(isset($_GET['login']))
     <title>Document</title>
 </head>
 <body>
-<h2>Profil de</h2>
+<h2>Profil de <?php echo $_SESSION["login"]; ?></h2>
 <p><?php
         if(isset($erreur))
         {
@@ -26,4 +26,3 @@ if(isset($_GET['login']))
 </html>
 <?php
 }
-?>

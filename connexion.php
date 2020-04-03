@@ -8,15 +8,15 @@ if(isset($_POST['formconnect']))
     $mdpconnnect = $_POST['mdpconnect'];
     if(!empty($mailconnnect) AND !empty($mdpconnnect))
     {
-        $requser = $bdd->prepare("SELECT * FROM visiteur WHERE mdp = ? AND mail = ?");
-        $requser->execute(array($mailconnnect, $mdpconnnect));
+        $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE mdp = ? AND mail = ?");
+        $requser->execute(array($mdpconnnect, $mailconnnect));
         $userexist = $requser->rowCount();
         if($userexist == 1)
         {
             $userinfo = $requser->fetch();
             $_SESSION['login'] = $userinfo['login'];
             $_SESSION['mail'] = $userinfo['mail'];
-            header("Location: profil.php?login=".$_SESSION['login']);
+            header("Location: profil.php");
         }
         else 
         {
