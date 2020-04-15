@@ -47,7 +47,8 @@ try
                         $sth->execute();
                         $ajoutlogin = $bdd->prepare("INSERT INTO visiter (login) SELECT login FROM visiteur");
                         $ajoutlogin->execute(array($login));
-                        $erreur = "Votre compte a bien été créé";
+                        header('Location: ../index.php');
+                        exit;
                         }
                         else 
                         {
@@ -88,12 +89,12 @@ try
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../style/inscription.css">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Formulaire HTML</h1>
+    <h1>Formulaire d'inscription</h1>
 
     <form action="" method="POST">
         <div>
@@ -105,7 +106,7 @@ try
             <input type="password" id="mdp" name="mdp">
         </div>
         <div>
-            <label for="mdp2">Confirmation du mot de passe : </label>
+            <label for="mdp2">Confirmez votre mot de passe : </label>
             <input type="password" id="mdp2" name="mdp2">
         </div>
         <div>
@@ -113,15 +114,15 @@ try
             <input type="email" id="mail" name="mail" value="<?php if(isset($mail)){ echo $mail; } ?>">
         </div>
         <div>
-            <label for="mail2">Confirmation de mon email : </label>
+            <label for="mail2">Confirmez votre email : </label>
             <input type="email" id="mail2" name="mail2" value="<?php if(isset($mail2)){ echo $mail2; } ?>">
         </div>
         <div>
-            <label for="nom">Nom : </label>
+            <label for="nom">Nom <i>(en majuscule)</i> : </label>
             <input type="text" id="nom" name="nom" value="<?php if(isset($nom)){ echo $nom; } ?>">
         </div>
         <div>
-            <label for="numero">Numéro de téléphone : </label>
+            <label for="numero">Numéro de la rue : </label>
             <input type="number" id="numero" name="numero" value="<?php if(isset($numero)){ echo $numero; } ?>">
         </div>
         <div>
@@ -150,6 +151,7 @@ try
             echo $erreur;
         }
         ?></p>
+    <a href="../index.php">Accueil</a>  
 </body>
 
 </html>

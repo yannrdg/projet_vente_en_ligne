@@ -16,7 +16,7 @@ if(isset($_POST['formconnect']))
             $userinfo = $requser->fetch();
             $_SESSION['login'] = $userinfo['login'];
             $_SESSION['mail'] = $userinfo['mail'];
-            header("Location: profil.php");
+            header("Location: session.php");
         }
         else 
         {
@@ -33,32 +33,38 @@ if(isset($_POST['formconnect']))
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="yann" content="autho">
+    <link rel="stylesheet" href="../style/connexion.css">
+    <title>Connexion</title>
 </head>
-<body>
-<h1>Connexion</h1>
 
-<form action="" method="POST">
-    <div>
-        <label for="mailconnect">Mail : </label>
-        <input type="email" id="mailconnect" name="mailconnect">
-    </div>
-    <div>
-        <label for="mdpconnect">Mot de passe : </label>
-        <input type="password" id="mdpconnect" name="mdpconnect">
-    </div>
-    <div id="submit">
-        <input type="submit" value="Connexion" name="formconnect">
-    </div>
-</form>
-<p><?php
+<body>
+    <img src="../medias/Select_logo.png" alt="">
+    <h1>S'identifier</h1>
+
+    <form action="" method="POST">
+        <div>
+            <label for="mailconnect">Votre e-mail</label>
+            <input type="email" id="mailconnect" name="mailconnect">
+        </div>
+        <div>
+            <label for="mdpconnect">Votre mot de passe</label>
+            <input type="password" id="mdpconnect" name="mdpconnect">
+        </div>
+        <div id="submit">
+            <input type="submit" value="Connexion" name="formconnect">
+        </div>
+    </form>
+    <p><?php
         if(isset($erreur))
         {
             echo $erreur;
         }
         ?></p>
+    <a href="../index.php">Accueil</a>
 </body>
+
 </html>

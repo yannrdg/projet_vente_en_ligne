@@ -1,28 +1,20 @@
-<?php
-session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=projet', 'root', 'root');
-
-if(isset($_SESSION['login']))
-{
-
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="yann" content="auhtor">
+    <link rel="stylesheet" href="./style/index.css">
+    <title>Acceuil</title>
 </head>
 <body>
-<h2>Profil de <?php echo $_SESSION["login"]; ?></h2>
-<p><?php
-        if(isset($erreur))
-        {
-            echo $erreur;
-        }
-        ?></p>
+    <header>
+        <img src="./medias/Select_logo.png" alt="logo Select">
+        <div>
+            <input type="search" value="recherche" name="recherche" placeholder="Que recherchez-vous ?">
+            <input type="submit" name="demande" value="&#128269;">
+        </div>
+        <a href="./php/connexion.php">Identifiez-vous</a>
+        <a href="./php/inscription.php">Rejoignez-nous</a>
+    </header>
 </body>
 </html>
-<?php
-}
