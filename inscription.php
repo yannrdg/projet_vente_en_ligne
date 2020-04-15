@@ -121,7 +121,7 @@ try
             <input type="text" id="nom" name="nom" value="<?php if(isset($nom)){ echo $nom; } ?>">
         </div>
         <div>
-            <label for="numero">Numéro de résidence : </label>
+            <label for="numero">Numéro de téléphone : </label>
             <input type="number" id="numero" name="numero" value="<?php if(isset($numero)){ echo $numero; } ?>">
         </div>
         <div>
