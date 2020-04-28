@@ -42,29 +42,34 @@ if(isset($_POST['formconnect']))
 </head>
 
 <body>
-    <img src="../medias/Select_logo.png" alt="">
-    <h1>S'identifier</h1>
+    <main>
+        <a href="../index.php"><img src="../medias/Select_logo.png" alt=""></a>
+        <section>
+            <h1>S'identifier</h1>
 
-    <form action="" method="POST">
-        <div>
-            <label for="mailconnect">Votre e-mail</label>
-            <input type="email" id="mailconnect" name="mailconnect">
-        </div>
-        <div>
-            <label for="mdpconnect">Votre mot de passe</label>
-            <input type="password" id="mdpconnect" name="mdpconnect">
-        </div>
-        <div id="submit">
-            <input type="submit" value="Connexion" name="formconnect">
-        </div>
-    </form>
-    <p><?php
-        if(isset($erreur))
-        {
-            echo $erreur;
-        }
-        ?></p>
-    <a href="../index.php">Accueil</a>
+            <form action="" method="POST">
+                <div>
+                    <label for="mailconnect">Votre e-mail</label>
+                    <input type="email" id="mailconnect" name="mailconnect">
+                </div>
+                <div>
+                    <label for="mdpconnect">Votre mot de passe</label>
+                    <input type="password" id="mdpconnect" name="mdpconnect">
+                </div>
+                <div id="submit">
+                    <input type="submit" value="Connexion" name="formconnect">
+                </div>
+                <p><?php
+                if(isset($erreur))
+                {
+                    echo $erreur;
+                }
+                ?></p>
+            </form>
+            <a href="inscription.php">Première connexion</a>
+        </section>
+        <a href="../index.php">Accueil</a>
+    </main>
 </body>
 
 </html>

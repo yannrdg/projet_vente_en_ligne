@@ -13,10 +13,10 @@ header{
     height: 16vh;
 }
 
-header>img{
+header>a>img{
     width: auto;
     height: 13vh;
-    margin: auto auto auto 5vw;
+    margin: auto;
 }
 
 header>div{
@@ -65,4 +65,12 @@ header>a:last-of-type{
 
 header>a:hover{
     background-color: rgba(141, 152, 183, 0.6);
+}
+
+/*Gestion de la balise a du logo*/
+
+#logo{
+    margin:auto;
+    padding: 0;
+    background-color: rgba(144, 172, 183, 1);
 }

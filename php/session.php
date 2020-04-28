@@ -18,7 +18,7 @@ if(isset($_SESSION['login']))
     <header>
         <!--<img src="../medias/Select_logo.png" alt="logo select">-->
         <p>Profil de <?php echo $_SESSION["login"]; ?></p>
-        <a href="deconnexion.php">Deconnexion</a>
+        <a href="deconnexion.php">Déconnexion</a>
     </header>
 </body>
 </html>
