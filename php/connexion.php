@@ -1,6 +1,8 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=projet', 'root', 'root');
+include 'config.php';
+
+$bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
 if(isset($_POST['formconnect']))
 {
