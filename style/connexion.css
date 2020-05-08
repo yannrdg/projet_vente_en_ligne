@@ -68,3 +68,7 @@ main>a:last-of-type{
 section>a{
     margin-top: 4vh;
 }
+
+section>form>p{
+    text-align: center;
+}

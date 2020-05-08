@@ -51,7 +51,7 @@ try
                                 $sth->bindParam(':ville',$ville);
                                 $sth->bindParam(':cb',$cb);
                                 $sth->execute();
-                                $ajoutlogin = $bdd->prepare("INSERT INTO visiter (login) SELECT login FROM visiteur");
+                                $ajoutlogin = $bdd->prepare("INSERT INTO VISITER (login) VALUES ('$login')");
                                 $ajoutlogin->execute(array($login));
                                 header('Location: connexion.php');
                             }

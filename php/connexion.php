@@ -4,28 +4,34 @@ if(isset($_SESSION['mail']))
 {
     header('Location: ../index.php');
 }
-session_start();
 include 'config.php';
 
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-$mailconnnect = htmlspecialchars($_POST['mailconnect']);
+$idconnnect = htmlspecialchars($_POST['idconnect']);
 $mdpconnect = sha1($_POST['mdpconnect']);
 
 if(isset($_POST['formconnect']))
 {
-    if(!empty($mailconnnect) && !empty($mdpconnect))
+    if(!empty($idconnnect) && !empty($mdpconnect))
     {
-        $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE mdp = ? AND mail = ?");
-        $requser->execute(array($mdpconnect, $mailconnnect));
+        $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE (mail = '$idconnnect' || login = '$idconnnect') && mdp = '$mdpconnect'");
+        $requser->execute(array($idconnnect, $mdpconnect));
         $userexist = $requser->rowCount();
         if($userexist == 1)
         {
-            $userinfo = $requser->fetch();
-            $_SESSION['login'] = $userinfo['login'];
-            $_SESSION['mail'] = $userinfo['mail'];
-            header('Location: ../index.php');
+            if($idconnnect === 'admin')
+            {
+                header('Location: admin.php');
+            }
+            else
+            {
+                $userinfo = $requser->fetch();
+                $_SESSION['login'] = $userinfo['login'];
+                $_SESSION['mail'] = $userinfo['mail'];
+                header('Location: ../index.php');
+            }
         }
-        else 
+        else
         {
             $erreur = "Mauvais identifiants";
         }
@@ -59,8 +65,8 @@ if(isset($_POST['formconnect']))
 
             <form action="" method="POST">
                 <div>
-                    <label for="mailconnect">Votre e-mail</label>
-                    <input type="email" id="mailconnect" name="mailconnect">
+                    <label for="idconnect">Votre e-mail ou votre login</label>
+                    <input type="text" id="idconnect" name="idconnect" value="<?php if(isset($idconnnect)) {echo $idconnnect;} ?>">
                 </div>
                 <div>
                     <label for="mdpconnect">Votre mot de passe</label>

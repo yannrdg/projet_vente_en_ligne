@@ -8,7 +8,9 @@
             if(isset($_SESSION['login']))
             {
         ?>
-                <a href="deconnexion.php">Deconnectez-vous</a>
+                <a id="profil" href="profil.php">Gérer mon profil</a>
+                <a id="panier" href="panier.php">Mon panier</a>
+                <a id="deco" href="deconnexion.php">Deconnectez-vous</a>
         <?php
             }
             else

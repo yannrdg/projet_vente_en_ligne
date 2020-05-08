@@ -23,8 +23,10 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
         <?php
             if(isset($_SESSION['login']))
             {
-        ?>
-                <a href="php/deconnexion.php">Deconnectez-vous</a>
+        ?>  
+               <a id="profil" href="php/profil.php">Gérer mon profil</a>
+                <a id="panier" href="php/panier.php">Mon panier</a>
+                <a id="deco" href="php/deconnexion.php">Deconnectez-vous</a>
         <?php
             }
             else
