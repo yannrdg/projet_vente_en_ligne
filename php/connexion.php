@@ -1,24 +1,29 @@
 <?php
 session_start();
+if(isset($_SESSION['mail']))
+{
+    header('Location: ../index.php');
+}
+session_start();
 include 'config.php';
 
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+$mailconnnect = htmlspecialchars($_POST['mailconnect']);
+$mdpconnect = sha1($_POST['mdpconnect']);
 
 if(isset($_POST['formconnect']))
 {
-    $mailconnnect = htmlspecialchars($_POST['mailconnect']);
-    $mdpconnnect = $_POST['mdpconnect'];
-    if(!empty($mailconnnect) AND !empty($mdpconnnect))
+    if(!empty($mailconnnect) && !empty($mdpconnect))
     {
         $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE mdp = ? AND mail = ?");
-        $requser->execute(array($mdpconnnect, $mailconnnect));
+        $requser->execute(array($mdpconnect, $mailconnnect));
         $userexist = $requser->rowCount();
         if($userexist == 1)
         {
             $userinfo = $requser->fetch();
             $_SESSION['login'] = $userinfo['login'];
             $_SESSION['mail'] = $userinfo['mail'];
-            header("Location: session.php");
+            header('Location: ../index.php');
         }
         else 
         {
@@ -40,12 +45,15 @@ if(isset($_POST['formconnect']))
     <meta charset="UTF-8">
     <meta name="yann" content="autho">
     <link rel="stylesheet" href="../style/connexion.css">
+    <link rel="stylesheet" href="../style/global.css">
     <title>Connexion</title>
 </head>
 
 <body>
+<?php
+    include  '../includes/header.php';
+?>
     <main>
-        <a href="../index.php"><img src="../medias/Select_logo.png" alt=""></a>
         <section>
             <h1>S'identifier</h1>
 
@@ -70,7 +78,6 @@ if(isset($_POST['formconnect']))
             </form>
             <a href="inscription.php">Première connexion</a>
         </section>
-        <a href="../index.php">Accueil</a>
     </main>
 </body>
 
