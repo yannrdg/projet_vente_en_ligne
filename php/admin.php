@@ -1,5 +1,7 @@
 <?php
 session_start();
+if($_SESSION['login'] == 'admin')
+{
 include 'config.php';
 
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
@@ -19,14 +21,14 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
             }
             else
             {
-                echo '5';
+                echo "La référence de l'article doit faire 5 chiffres";
             }
         }
         else
         {
             echo 'il manque des infos';
         }
-    }
+    }   
 
 ?>
 
@@ -58,3 +60,6 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 <input type="submit" name="ajout" value="ajouter un article">
 </form>
 </html>
+<?php
+}
+header ('Location: ../index.php');

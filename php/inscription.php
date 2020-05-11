@@ -33,42 +33,69 @@ try
             $loginlength = strlen($login);
             if($loginlength <= 20) 
             {
-                if($mail == $mail2)
-                {
-                    if(filter_var($mail, FILTER_VALIDATE_EMAIL))
-                    {   
-                            if($mdp == $mdp2)
+                $reqlogin = $bdd->prepare("SELECT * FROM VISITEUR WHERE login = ?");
+                $reqlogin->execute(array($login));
+                $loginexist = $reqlogin->rowCount();
+                if($loginexist == 0)
+                {                
+                    if($mail == $mail2)
+                    {
+                        if(filter_var($mail, FILTER_VALIDATE_EMAIL))
+                        {
+                            $reqtitre = $bdd->prepare("SELECT * FROM VISITEUR WHERE mail = ?");
+                            $reqtitre->execute(array($mail));
+                            $emailexist = $reqtitre->rowCount();
+                            if($emailexist == 0)
                             {
-
-                                $sth = $bdd->prepare("INSERT INTO VISITEUR(login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
-                                $sth->bindParam(':login',$login);
-                                $sth->bindParam(':mdp',$mdp);
-                                $sth->bindParam(':mail',$mail);
-                                $sth->bindParam(':nom',$nom);
-                                $sth->bindParam(':numero',$numero);
-                                $sth->bindParam(':rue',$rue);
-                                $sth->bindParam(':cp',$cp);
-                                $sth->bindParam(':ville',$ville);
-                                $sth->bindParam(':cb',$cb);
-                                $sth->execute();
-                                $ajoutlogin = $bdd->prepare("INSERT INTO VISITER (login) VALUES ('$login')");
-                                $ajoutlogin->execute(array($login));
-                                header('Location: connexion.php');
-                            }
-                            else 
+                                if($mdp == $mdp2)
+                                {
+                                    if(is_numeric($numero) == true )
+                                    {
+                                        $sth = $bdd->prepare("INSERT INTO VISITEUR(login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
+                                        $sth->bindParam(':login',$login);
+                                        $sth->bindParam(':mdp',$mdp);
+                                        $sth->bindParam(':mail',$mail);
+                                        $sth->bindParam(':nom',$nom);
+                                        $sth->bindParam(':numero',$numero);
+                                        $sth->bindParam(':rue',$rue);
+                                        $sth->bindParam(':cp',$cp);
+                                        $sth->bindParam(':ville',$ville);
+                                        $sth->bindParam(':cb',$cb);
+                                        $sth->execute();
+                                        $ajoutlogin = $bdd->prepare("INSERT INTO VISITER (login) VALUES ('$login')");
+                                        $ajoutlogin->execute(array($login));
+                                        $erreur = "Votre inscription a bien été pris en compte !".'</br>'.'Vous allez être redirigé vers la page de connexion.';
+                                        header("refresh:4;url=connexion.php");                                       
+                                    }
+                                    else
+                                    {
+                                        $erreur = "Votre numéro ne doit comporter que des chiffres";
+                                    }
+                                }
+                                else 
+                                {
+                                    $erreur = "Vos mots de passe ne correspondent pas";
+                                }
+                            }    
+                            else
                             {
-                                $erreur = "Vos mots de passe ne correspondent pas";
-                            }
+                                $erreur = "Mail déjà existant";
+                            }         
+                        }
+                        else 
+                        {
+                            $erreur = "Votre adresse mail n'est pas valide";
+                        }
                     }
                     else 
                     {
-                        $erreur = "Votre adresse mail n'est pas valide";
+                        $erreur = "Vos mails ne correpondent pas";
                     }
                 }
-                else 
+                else
                 {
-                    $erreur = "Vos mails ne correpondent pas";
-                }
+                    $erreur = "Login déjà existant";
+                }   
             } 
             else 
             {
@@ -89,7 +116,7 @@ try
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -116,12 +143,12 @@ try
                 </div>
                 <div>
                     <label for="mail">Email : </label>
-                    <input type="email" id="mail" name="mail" maxlength="20"
+                    <input type="email" id="mail" name="mail" maxlength="50"
                         value="<?php if(isset($mail)){ echo $mail; } ?>">
                 </div>
                 <div>
                     <label for="mail2">Confirmez votre email : </label>
-                    <input type="email" id="mail2" name="mail2" maxlength="20"
+                    <input type="email" id="mail2" name="mail2" maxlength="50"
                         value="<?php if(isset($mail2)){ echo $mail2; } ?>">
                 </div>
                 <div>

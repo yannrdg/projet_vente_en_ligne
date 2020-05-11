@@ -8,9 +8,15 @@
             if(isset($_SESSION['login']))
             {
         ?>
-                <a id="profil" href="profil.php">Gérer mon profil</a>
-                <a id="panier" href="panier.php">Mon panier</a>
-                <a id="deco" href="deconnexion.php">Deconnectez-vous</a>
+                <nav id="deroulant">
+                            <h3>Mon profil</h3>
+                            <ul>
+                                <li><a id="profil" href="profil.php">Gérer mon profil</a></li>
+                                <li><a id="panier" href="panier.php">Mon panier</a></li>
+                            </ul>          
+            </nav>
+            <a id="deco" href="deconnexion.php">Deconnectez-vous</a>
+               
         <?php
             }
             else

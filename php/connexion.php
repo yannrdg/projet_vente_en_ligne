@@ -4,6 +4,7 @@ if(isset($_SESSION['mail']))
 {
     header('Location: ../index.php');
 }
+session_start();
 include 'config.php';
 
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
@@ -14,24 +15,24 @@ if(isset($_POST['formconnect']))
 {
     if(!empty($idconnnect) && !empty($mdpconnect))
     {
-        $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE (mail = '$idconnnect' || login = '$idconnnect') && mdp = '$mdpconnect'");
+        $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE (login = '$idconnnect' || mail = '$idconnnect') && mdp = '$mdpconnect'");
         $requser->execute(array($idconnnect, $mdpconnect));
         $userexist = $requser->rowCount();
         if($userexist == 1)
         {
-            if($idconnnect === 'admin')
+            $userinfo = $requser->fetch();
+            $_SESSION['login'] = $userinfo['login'];
+            $_SESSION['mail'] = $userinfo['mail'];
+            if($idconnnect == 'admin')
             {
                 header('Location: admin.php');
             }
             else
             {
-                $userinfo = $requser->fetch();
-                $_SESSION['login'] = $userinfo['login'];
-                $_SESSION['mail'] = $userinfo['mail'];
                 header('Location: ../index.php');
             }
         }
-        else
+        else 
         {
             $erreur = "Mauvais identifiants";
         }
@@ -45,7 +46,7 @@ if(isset($_POST['formconnect']))
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -62,7 +63,7 @@ if(isset($_POST['formconnect']))
     <main>
         <section>
             <h1>S'identifier</h1>
-
+            <p>
             <form action="" method="POST">
                 <div>
                     <label for="idconnect">Votre e-mail ou votre login</label>

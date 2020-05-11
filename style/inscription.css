@@ -3,77 +3,6 @@
     margin: 0;
 }
 
-/*Header, display grid*/
-
-header{
-    display: grid;
-    background-color: rgba(144, 172, 183, 1);
-    /*background-color: rgba(141, 152, 159, 1);*/
-    grid-template-columns: 2fr 5fr 1.5fr 1.5fr;
-    height: 16vh;
-}
-
-header>a>img{
-    width: auto;
-    height: 13vh;
-    margin: auto;
-}
-
-header>div{
-    margin: auto auto auto 2vw;
-    display: flex;
-    flex-flow: row nowrap;
-    width: auto;
-    height: 5vh;
-    border: 3px solid rgba(141, 152, 159, 0.8);
-    border-radius: 4px;
-}
-
-header>div>input:first-of-type{
-    width: 35vw;
-    font-size: 1.1rem;
-}
-
-header>div>input:last-of-type{
-    background-color: rgba(141, 152, 159, 0.8);
-    font-size: 1.4rem;
-    border: none;
-}
-
-header>div>input:last-of-type:hover{
-    background-color: rgba(141, 152, 183, 0.6);
-}
-
-header>a{
-    margin: auto;
-    text-align: center;
-    text-decoration: none;
-    padding: 5%;
-    background-color: rgba(141, 152, 159, 0.8);
-    color: black;
-    border-radius: 4px;
-    font-size: 1.2rem;
-}
-
-header>a:first-of-type{
-    margin-right: 2vw;
-}
-
-header>a:last-of-type{
-    margin-left: 2vw;
-}
-
-header>a:hover{
-    background-color: rgba(141, 152, 183, 0.6);
-}
-
-/*Gestion de la balise a du logo*/
-
-#logo{
-    margin:auto;
-    padding: 0;
-    background-color: rgba(144, 172, 183, 1);
-}
 
 /* Gestion du corps du formulaire */
 
@@ -94,10 +23,12 @@ main>form>fieldset{
     width: 85%;
     margin: auto;
     padding: 5%;
+    border: 2px solid #CDFA4B;
 }
 
 main>form>fieldset>legend{
     margin: auto;
+    font-size: 1.5rem;
 }
 
 main>form>fieldset>div{
@@ -117,6 +48,7 @@ main>form>p:last-of-type{
     grid-area: 2/1/3/3;
     text-align: center;
     color: rgba(124, 10, 2, 1);
+    font-size: 1.7rem;
 }
 
 /*Bouton inscription*/
@@ -130,7 +62,7 @@ main>form>div{
     border: none;
     height: 3vh;
     font-size: 1rem;
-    background-color: rgba(144, 172, 183, 1);
+    background-color: #649EFA;
     border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.8) 2px 2px;
 }
@@ -148,12 +80,12 @@ main>a:last-of-type{
     text-align: center;
     text-decoration: none;
     padding: 5%;
-    background-color: rgba(141, 152, 159, 0.8);
+    background-color: #CDFA4B;
     color: black;
     border-radius: 4px;
     font-size: 1.2rem;
 }
 
 main>a:last-of-type{
-    background-color: rgba(141, 152, 183, 0.6);
+    background-color: #CDFA4B;
 }
