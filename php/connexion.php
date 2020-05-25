@@ -25,7 +25,7 @@ if(isset($_POST['formconnect']))
             $_SESSION['mail'] = $userinfo['mail'];
             if($idconnnect == 'admin')
             {
-                header('Location: admin.php');
+                header('Location: ../index.php');
             }
             else
             {

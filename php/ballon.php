@@ -15,6 +15,7 @@ $produit = $info->fetchAll();
     <meta charset="UTF-8">
     <meta name="yann" content="auhtor">
     <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/produit.css">
     <title>Acceuil</title>
 </head>
 

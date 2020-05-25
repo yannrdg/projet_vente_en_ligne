@@ -20,33 +20,43 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     {
         if($fileError == 0)
         {
-            if($extension == 'jpeg')
+            if($extension == 'jpg')
             {
                 move_uploaded_file($filetmpname, $folder.$newName);
                 if(!empty($ref) && !empty($nom) && !empty($descriptif))
                 {       
-                
-                    $reflength = strlen($ref);
-                    if($reflength === 5)
+                    $reqref = $bdd->prepare("SELECT * FROM PRODUIT WHERE ref = ?");
+                    $reqref->execute(array($ref));
+                    $refexist = $reqref->rowCount();
+                    if($refexist == 0)
                     {
+                
+                        $reflength = strlen($ref);
+                        if($reflength === 5)
+                        {
 
-                        $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
-                        $req->execute();
-                        header('Location: ../index.php');
+                            $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
+                            $req->execute();
+                            header('Location: ../index.php');
+                        }
+                        else
+                        {
+                            $erreur2 = "La référence de l'article doit faire 5 chiffres";
+                        }
                     }
                     else
                     {
-                        echo "La référence de l'article doit faire 5 chiffres";
+                        $erreur2 = "Cette référence existe déjà";
                     }
                 }
                 else
                 {
-                    echo 'il manque des infos';
+                    $erreur2 = 'il manque des infos';
                 }
             }
             else
             {
-                echo 'L\'image doit être au format jpeg';
+                $erreur2 = 'L\'image doit être au format jpeg';
             }
         }
         else
@@ -68,19 +78,20 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 </head>
 
 <body>
-    <h1>ajout</h1>
+<main>
+<h1>ajout</h1>
     <form action="" method="post" enctype="multipart/form-data">
         <div>
             <label for="ref"></label>
-            <input type="number" id="ref" maxlength="5" name="ref">
+            <input type="number" id="ref" maxlength="5" name="ref" value="<?php if(isset($ref)) {echo $ref;} ?>">
         </div>
         <div>
             <label for="nom"></label>
-            <input type="text" id="nom" maxlength="20" name="nom">
+            <input type="text" id="nom" maxlength="20" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
         </div>
         <div>
             <label for="descriptif"></label>
-            <input type="text" id="descriptif" name="descriptif" maxlength="50">
+            <input type="text" id="descriptif" name="descriptif" maxlength="50" value="<?php if(isset($descriptif)) {echo $descriptif;} ?>">
         </div>
         <div>
                 <label for="type">Catégorie :</label>
@@ -97,6 +108,15 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
         </div>
         <input type="submit" name="ajout" value="ajouter un article">
     </form>
+    <p>
+        <?php
+            if(isset($erreur2))
+            {
+                echo $erreur2;
+            }
+        ?>
+    </p>
+</main>
 </body>
 
 </html>

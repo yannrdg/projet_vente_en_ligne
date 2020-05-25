@@ -1,0 +1,17 @@
+/* disposition des produits sur la page*/
+
+main{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+main>section{
+    background-color: rosybrown;
+    width: 100%;
+}
+
+main>section>img{
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+}

@@ -31,8 +31,15 @@ $produit = $info->fetchAll();
         <a>Mon profil</a>
         <ul>
             <li><a id="profil" href="php/profil.php">Gérer mon profil</a></li>
+            <?php
+                if($_SESSION['login'] == 'admin')
+                {
+            ?>
+            <li><a id="admin" href="php/admin.php">Page administration</a></li>
+            <?php
+                }
+            ?>
             <li><a id="deco" href="php/deconnexion.php">Deconnectez-vous</a></li>
-            
         </ul>
     </nav>
     <a id="panier" href="php/panier.php">Mon panier</a>
@@ -56,7 +63,7 @@ $produit = $info->fetchAll();
                 <p><?= $items['descriptif']?></p>
                 <p>Référence : <?= $items['ref']?></p>
             </div>
-            <img src="medias/<?= $items['ref']?>.jpeg" src="medias/<?= $items['nom']?>.jpeg"
+            <img src="medias/<?= $items['ref']?>.jpg"
                 alt="image">
         </section>
             <?php endforeach; ?>

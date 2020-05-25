@@ -4,5 +4,5 @@
                 <p><?= $items['descriptif']?></p>
                 <p>Référence : <?= $items['ref']?></p>
             </div>
-            <img src="../medias/<?= $items['ref']?>.jpeg" alt="image">
+            <img src="../medias/<?= $items['ref']?>.jpg" alt="image">
 </section>

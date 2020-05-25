@@ -12,8 +12,15 @@
         <a>Mon profil</a>
         <ul>
             <li><a id="profil" href="profil.php">Gérer mon profil</a></li>
+            <?php
+                if($_SESSION['login'] == 'admin')
+                {
+            ?>
+            <li><a id="admin" href="admin.php">Page administration</a></li>
+            <?php
+                }
+            ?>
             <li><a id="deco" href="deconnexion.php">Deconnectez-vous</a></li>
-            
         </ul>
     </nav>
     <a id="panier" href="panier.php">Mon panier</a>
@@ -28,4 +35,43 @@
     <?php                
             }
         ?>
+
+    <nav id="categories">
+        <ul>
+            <li>
+                <a href="">Football</a>
+                <ul>
+                    <li>Ballons</li>
+                    <li>Textiles</li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Handball</a>
+
+                <ul>
+                    <li>Ballons</li>
+                    <li>Textiles</li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="">Textile</a>
+
+                <ul>
+                    <li>Homme</li>
+                    <li>Femme</li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="ballon.php">Ballons</a>
+
+                <ul>
+                    <li>Football</li>
+                    <li>Handball</li>
+                </ul>
+
+            </li>
+        </ul>
+    </nav>
 </header>
