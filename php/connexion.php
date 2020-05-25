@@ -57,9 +57,9 @@ if(isset($_POST['formconnect']))
 </head>
 
 <body>
-<?php
-    include  '../includes/header.php';
-?>
+    <?php
+        include '../includes/header.php';
+    ?>
     <main>
         <section>
             <h1>S'identifier</h1>

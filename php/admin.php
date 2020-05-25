@@ -22,7 +22,7 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
         {
             if($extension == 'jpeg')
             {
-                move_uploaded_file($filetmpname, $folder.$filename);
+                move_uploaded_file($filetmpname, $folder.$newName);
                 if(!empty($ref) && !empty($nom) && !empty($descriptif))
                 {       
                 

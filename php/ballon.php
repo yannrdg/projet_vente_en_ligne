@@ -24,18 +24,9 @@ $produit = $info->fetchAll();
 ?>
     <main>
         <?php foreach ($produit as $items): 
-          if($items['type'] == 'ballon')  
-          {
-        ?>
-        <section class="<?= $items['type']?>">
-            <div>
-                <h3><?= $items['nom']?></h3>
-                <p><?= $items['descriptif']?></p>
-                <p>Référence : <?= $items['ref']?></p>
-            </div>
-            <img src="../medias/<?= $items['ref']?>/.jpeg" alt="image">
-        </section>
-        <?php 
+            if($items['type'] == 'ballon')  
+            {
+            include '../includes/produit.php';
             }
             endforeach; 
         ?>
