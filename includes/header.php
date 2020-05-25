@@ -38,40 +38,10 @@
 
     <nav id="categories">
         <ul>
-            <li>
-                <a href="">Football</a>
-                <ul>
-                    <li>Ballons</li>
-                    <li>Textiles</li>
-                </ul>
-            </li>
-            <li>
-                <a href="">Handball</a>
-
-                <ul>
-                    <li>Ballons</li>
-                    <li>Textiles</li>
-                </ul>
-
-            </li>
-            <li>
-                <a href="">Textile</a>
-
-                <ul>
-                    <li>Homme</li>
-                    <li>Femme</li>
-                </ul>
-
-            </li>
-            <li>
-                <a href="ballon.php">Ballons</a>
-
-                <ul>
-                    <li>Football</li>
-                    <li>Handball</li>
-                </ul>
-
-            </li>
+            <li><a href="football.php">Football</a></li>
+            <li><a href="handball.php">Handball</a></li>
+            <li><a href="textile.php">Textile</a></li>
+            <li><a href="ballon.php">Ballon</a></li>
         </ul>
     </nav>
 </header>

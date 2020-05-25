@@ -82,16 +82,16 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 <h1>ajout</h1>
     <form action="" method="post" enctype="multipart/form-data">
         <div>
-            <label for="ref"></label>
+            <label for="ref">Référence du produit</label>
             <input type="number" id="ref" maxlength="5" name="ref" value="<?php if(isset($ref)) {echo $ref;} ?>">
         </div>
         <div>
-            <label for="nom"></label>
-            <input type="text" id="nom" maxlength="20" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" maxlength="50" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
         </div>
         <div>
-            <label for="descriptif"></label>
-            <input type="text" id="descriptif" name="descriptif" maxlength="50" value="<?php if(isset($descriptif)) {echo $descriptif;} ?>">
+            <label for="descriptif">Descriptif</label>
+            <textarea id="descriptif" name="descriptif" maxlength="255" row="6" cols="51" value="<?php if(isset($descriptif)) {echo $descriptif;} ?>"></textarea>
         </div>
         <div>
                 <label for="type">Catégorie :</label>
