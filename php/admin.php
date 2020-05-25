@@ -13,29 +13,46 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $filename = $_FILES['file']['name'];
     $filetmpname = $_FILES['file']['tmp_name'];
     $folder = '../medias/';
+    $extension = strtolower(substr(strrchr($filename,'.'),1));
+    $newName = $ref.'.'.$extension;
 
     if(isset($_POST['ajout']))
     {
-        if(!empty($ref) && !empty($nom) && !empty($descriptif))
-        {       
-            move_uploaded_file($filetmpname, $folder.$filename);
-            $reflength = strlen($ref);
-            if($reflength === 5)
+        if($fileError == 0)
+        {
+            if($extension == 'jpeg')
             {
+                move_uploaded_file($filetmpname, $folder.$filename);
+                if(!empty($ref) && !empty($nom) && !empty($descriptif))
+                {       
+                
+                    $reflength = strlen($ref);
+                    if($reflength === 5)
+                    {
 
-                $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
-                $req->execute();
-                header('Location: ../index.php');
+                        $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
+                        $req->execute();
+                        header('Location: ../index.php');
+                    }
+                    else
+                    {
+                        echo "La référence de l'article doit faire 5 chiffres";
+                    }
+                }
+                else
+                {
+                    echo 'il manque des infos';
+                }
             }
             else
             {
-                echo "La référence de l'article doit faire 5 chiffres";
+                echo 'L\'image doit être au format jpeg';
             }
         }
         else
         {
-            echo 'il manque des infos';
-        }
+            $erreur2 = "Une erreur est survenue";
+        } 
     }   
 
 ?>
@@ -75,8 +92,8 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
                 </select>
         </div>
         <div>
-        <label for="">File up</label>
-        <input type="file" name="file" value="déposez">
+            <label for="">File up</label>
+            <input type="file" name="file" value="déposez" required>
         </div>
         <input type="submit" name="ajout" value="ajouter un article">
     </form>

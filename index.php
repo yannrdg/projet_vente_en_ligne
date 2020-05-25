@@ -56,7 +56,7 @@ $produit = $info->fetchAll();
                 <p><?= $items['descriptif']?></p>
                 <p>Référence : <?= $items['ref']?></p>
             </div>
-            <img src="medias/<?= $items['nom']?>.jpg" src="medias/<?= $items['nom']?>.jpeg"
+            <img src="medias/<?= $items['ref']?>.jpeg" src="medias/<?= $items['nom']?>.jpeg"
                 alt="image">
         </section>
             <?php endforeach; ?>
