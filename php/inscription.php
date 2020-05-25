@@ -174,7 +174,7 @@ try
                 </div>
                 <div>
                     <label for="rue">Rue : </label>
-                    <input type="text" id="rue" name="rue" maxlength="20"
+                    <input type="text" id="rue" name="rue" maxlength="100"
                         value="<?php if(isset($rue)){ echo $rue; } ?>">
                 </div>
                 <div>
@@ -184,7 +184,7 @@ try
                 </div>
                 <div>
                     <label for="ville">Ville : </label>
-                    <input type="text" id="ville" name="ville" maxlength="20"
+                    <input type="text" id="ville" name="ville" maxlength="50"
                         value="<?php if(isset($ville)){ echo $ville; } ?>">
                 </div>
                 <div>
