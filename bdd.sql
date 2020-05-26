@@ -30,8 +30,10 @@ CREATE TABLE `PANIERCDE` (
 
 CREATE TABLE `PRODUIT` (
   `ref` char(5) NOT NULL,
-  `nom` varchar(20) DEFAULT NULL,
-  `descriptif` varchar(50) DEFAULT NULL
+  `nom` varchar(50) DEFAULT NULL,
+  `descriptif` varchar(255) DEFAULT NULL,
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -52,14 +54,15 @@ CREATE TABLE `VISITER` (
 --
 
 CREATE TABLE `VISITEUR` (
-  `login` varchar(20) NOT NULL,
+  `idp` int(5) NOT NULL,
+  `login` varchar(20) DEFAULT NULL,
   `mdp` varchar(255) DEFAULT NULL,
-  `mail` varchar(50) DEFAULT NULL,
+  `mail` varchar(100) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
   `numero` int(11) DEFAULT NULL,
-  `rue` varchar(20) DEFAULT NULL,
+  `rue` varchar(100) DEFAULT NULL,
   `cp` char(5) DEFAULT NULL,
-  `ville` varchar(20) DEFAULT NULL,
+  `ville` varchar(50) DEFAULT NULL,
   `cb` char(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -89,4 +92,14 @@ ALTER TABLE `PRODUIT`
 -- Index pour la table `VISITEUR`
 --
 ALTER TABLE `VISITEUR`
-  ADD PRIMARY KEY (`login`);
+  ADD PRIMARY KEY (`idp`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `VISITEUR`
+--
+ALTER TABLE `VISITEUR`
+  MODIFY `idp` int(5) NOT NULL AUTO_INCREMENT;
