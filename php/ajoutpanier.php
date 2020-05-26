@@ -33,8 +33,9 @@ if($_SESSION['login'])
     if(isset($_POST['oui']))
     {
 
-        $reqproduit = $bdd->prepare("SELECT * FROM PRODUIT WHERE ref = '$ref'");
-        $reqproduit->execute();
+        $reqproduit = $bdd->prepare("SELECT * FROM PRODUIT WHERE ref = :ref");
+        $reqproduit->bindParam(':ref',$ref);
+	$reqproduit->execute();
         $produit = $reqproduit->fetchAll();
         
         $idp = $_SESSION['idp'];
