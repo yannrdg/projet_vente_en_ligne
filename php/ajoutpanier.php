@@ -33,9 +33,9 @@ if($_SESSION['login'])
     if(isset($_POST['oui']))
     {
 
-        $reqproduit = $bdd->prepare("SELECT * FROM PRODUIT WHERE ref = '$ref'");
-        $reqproduit->execute();
-        $produit = $reqproduit->fetchAll();
+        $reqProduit = $bdd->prepare("SELECT * FROM PRODUIT WHERE ref = '$ref'");
+        $reqProduit->execute();
+        $produit = $reqProduit->fetchAll();
         
         $idp = $_SESSION['idp'];
         $quantite = $_POST['quantite'];
