@@ -6,9 +6,7 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 $info = $bdd->prepare("SELECT * FROM PRODUIT ORDER BY date DESC");
 $exec = $info->execute();
 $produit = $info->fetchAll();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -24,8 +22,22 @@ $produit = $info->fetchAll();
     <header>
         <a href="index.php" id="logo"><img src="medias/Select_logo.png" alt="logo Select"></a>
         <div>
-            <input type="text" name="recherche" placeholder="Que recherchez-vous ?">
-            <input type="submit" name="demande" value="&#128269;">
+            <form action="" method="post">
+                <input type="text" name="recherche" placeholder="Que recherchez-vous ?">
+                <input type="submit" name="demande" value="&#128269;">
+                <?php
+                    if(isset($_POST['demande']))
+                    {
+                        //Gestion de la barre de recherche
+                        $submit = $_POST['demande'];
+                        $texte = $_POST['recherche'];
+                        $recherche = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE :texte ORDER BY date DESC");
+                        $recherche->bindValue(":texte",'%'.$texte.'%');
+                        $execute = $recherche->execute();
+                        $produit = $recherche->fetchAll();
+                    }
+                ?>
+            </form>
         </div>
         <?php
             if(isset($_SESSION['login']))

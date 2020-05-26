@@ -30,19 +30,19 @@ header>div{
     border-radius: 4px;
 }
 
-header>div>input:first-of-type{
+header>div>form>input:first-of-type{
     width: 35vw;
     font-size: 1.5rem;
 }
 
-header>div>input:last-of-type{
+header>div>form>input:last-of-type{
     background-color: #CDFA4B;
-    font-size: 1.4rem;
+    font-size: 1.8vw;
     border: none;
 }
 
-header>div>input:last-of-type:hover{
-    background-color: #CDFA4B;
+header>div>form>input:last-of-type:hover{
+    background-color: rgb(160, 196, 55);
 }
 
 header>a, header>#deroulant>a{
