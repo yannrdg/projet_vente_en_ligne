@@ -32,13 +32,13 @@ main>section>p:last-of-type{
 main>section>h3{
     text-align: center;
     margin-bottom: 1vw;
-    font-size: 1.6vw;
+    font-size: 1.4vw;
 }
 main>section>p:first-of-type{
     text-align: center;
-    margin-bottom: 1.5vw;
-    height: 6vw;
-    font-size: 1.2vw;
+    margin-bottom: 1vw;
+    height: 7vw;
+    font-size: 1.1vw;
 }
 
 main>section>a{

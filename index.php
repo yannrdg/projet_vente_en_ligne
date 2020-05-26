@@ -72,9 +72,8 @@ $produit = $info->fetchAll();
         ?>
         <nav id="categories">
             <ul>
-                <li><a href="php/football.php">Football</a></li>
-                <li><a href="php/handball.php">Handball</a></li>
-                <li><a href="php/textile.php">Textile</a></li>
+                <li><a href="php/femme.php">Femme</a></li>
+                <li><a href="php/homme.php">Homme</a></li>
                 <li><a href="php/ballon.php">Ballon</a></li>
             </ul>
         </nav>

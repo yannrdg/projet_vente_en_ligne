@@ -88,10 +88,9 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
         <div>
                 <label for="type">Catégorie :</label>
                 <select name="type" id="type">
-                    <option value="ballon">ballon</option>
-                    <option value="handball">handball</option>
-                    <option value="football">football</option>
-                    <option value="tshirt">t-shirt</option>
+                    <option value="ballon">Ballon</option>
+                    <option value="femme">Femme</option>
+                    <option value="homme">Homme</option>
                 </select>
         </div>
         <div>

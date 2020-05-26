@@ -51,9 +51,8 @@
         ?>
     <nav id="categories">
         <ul>
-            <li><a href="football.php">Football</a></li>
-            <li><a href="handball.php">Handball</a></li>
-            <li><a href="textile.php">Textile</a></li>
+            <li><a href="femme.php">Femme</a></li>
+            <li><a href="homme.php">Homme</a></li>
             <li><a href="ballon.php">Ballon</a></li>
         </ul>
     </nav>
