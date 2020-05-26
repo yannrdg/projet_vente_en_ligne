@@ -23,6 +23,7 @@ if(isset($_POST['formconnect']))
             $userinfo = $requser->fetch();
             $_SESSION['login'] = $userinfo['login'];
             $_SESSION['mail'] = $userinfo['mail'];
+            $_SESSION['idp'] = $userinfo['idp'];
             if($idconnnect == 'admin')
             {
                 header('Location: ../index.php');

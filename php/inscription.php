@@ -65,7 +65,7 @@ try
                                         $ajoutlogin = $bdd->prepare("INSERT INTO VISITER (login) VALUES ('$login')");
                                         $ajoutlogin->execute(array($login));
                                         $erreur = "Votre inscription a bien été pris en compte !".'</br>'.'Vous allez être redirigé vers la page de connexion.';
-                                        header("refresh:4;url=connexion.php");                                       
+                                        header("refresh:3;url=connexion.php");                                       
                                     }
                                     else
                                     {
@@ -169,7 +169,7 @@ try
                 </div>
                 <div>
                     <label for="numero">Numéro de téléphone : </label>
-                    <input type="text" id="numero" name="numero" size="11" maxlength="11"
+                    <input type="text" id="numero" name="numero" size="15" placeholder="0909090909" maxlength="11"
                         value="<?php if(isset($numero)){ echo $numero; } ?>">
                 </div>
                 <div>

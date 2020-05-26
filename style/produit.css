@@ -41,7 +41,7 @@ main>section>p:first-of-type{
     font-size: 1.2vw;
 }
 
-main>section>input{
+main>section>a{
     border: none;
     height: auto;
     font-size: 1.3vw;
@@ -49,13 +49,18 @@ main>section>input{
     border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.8) 2px 2px;
     display: block;
-    margin: auto auto 2vh auto;
+    margin: 1vw auto 2vh auto;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    width: 10vw;
 }
 
-main>section>input:hover{
+main>section>a:hover{
     height: 4vh;
     font-size: 1.4vw;
     transition-duration: 250ms;
+    width: 12vw;
 }
 
 main>form{

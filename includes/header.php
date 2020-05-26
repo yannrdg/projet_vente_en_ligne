@@ -1,3 +1,5 @@
+<!-- Fichier de regroupement du header -->
+
 <header>
     <a href="../index.php" id="logo"><img src="../medias/Select_logo.png" alt="logo Select"></a>
     <div>

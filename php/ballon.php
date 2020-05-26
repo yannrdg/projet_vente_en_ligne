@@ -3,6 +3,12 @@ session_start();
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
+$info = $bdd->prepare("SELECT * FROM PRODUIT ORDER BY date DESC");
+$exec = $info->execute();
+$produit = $info->fetchAll();
+
+//Bouton de tri
+
 if(isset($_POST['foot']))
 {
     $foot = $bdd->prepare("SELECT * FROM PRODUIT WHERE nom LIKE '%football%' ORDER BY date DESC");
@@ -14,12 +20,6 @@ elseif(isset($_POST['hand']))
     $hand = $bdd->prepare("SELECT * FROM PRODUIT WHERE nom LIKE '%handball%' ORDER BY date DESC");
     $exec = $hand->execute();
     $produit = $hand->fetchAll();; 
-}
-else
-{
-$info = $bdd->prepare("SELECT * FROM PRODUIT ORDER BY date DESC");
-$exec = $info->execute();
-$produit = $info->fetchAll();
 }
 
 ?>
