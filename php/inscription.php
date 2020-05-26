@@ -15,11 +15,9 @@ if(isset($_SESSION['mail']))
     $cp = $_POST['cp'];
     $ville = htmlspecialchars($_POST['ville']);
     $cb = $_POST['cb'];
-
 try
 {
     include 'config.php';
-
     $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
@@ -112,12 +110,9 @@ try
 {
     echo 'Impossible de traiter les données. Erreur : '.$Exception->getMessage();
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -125,14 +120,12 @@ try
     <link rel="stylesheet" href="../style/global.css">
     <title>Document</title>
 </head>
-
 <body>
 <?php
     include  '../includes/header.php';
 ?>
     <main>
         <h2>Formulaire d'inscription</h2>
-
         <form action="" method="POST">
             <fieldset>
                 <legend>Mes identifiants</legend>
@@ -205,5 +198,4 @@ try
         </form>
     </main>
 </body>
-
 </html>

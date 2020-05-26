@@ -1,5 +1,4 @@
 <!-- Fichier de regroupement du header -->
-
 <header>
     <a href="../index.php" id="logo"><img src="../medias/Select_logo.png" alt="logo Select"></a>
     <div>
@@ -26,7 +25,6 @@
         </ul>
     </nav>
     <a id="panier" href="panier.php">Mon panier</a>
-
     <?php
             }
             else
@@ -37,7 +35,6 @@
     <?php                
             }
         ?>
-
     <nav id="categories">
         <ul>
             <li><a href="football.php">Football</a></li>

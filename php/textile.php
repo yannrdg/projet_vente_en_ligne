@@ -33,7 +33,6 @@ $produit = $info->fetchAll();
     <link rel="stylesheet" href="../style/produit.css">
     <title>Textile</title>
 </head>
-
 <body>
     <?php
     include '../includes/header.php';
@@ -53,5 +52,4 @@ $produit = $info->fetchAll();
         ?>
     </main>
 </body>
-
 </html>

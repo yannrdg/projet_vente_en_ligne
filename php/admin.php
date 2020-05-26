@@ -3,9 +3,7 @@ session_start();
 if($_SESSION['login'] == 'admin')
 {
 include 'config.php';
-
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-
     $ref = $_POST['ref'];
     $nom = $_POST['nom'];
     $descriptif = $_POST['descriptif'];
@@ -15,7 +13,6 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $folder = '../medias/';
     $extension = strtolower(substr(strrchr($filename,'.'),1));
     $newName = $ref.'.'.$extension;
-
     if(isset($_POST['ajout']))
     {
         if($fileError == 0)
@@ -34,7 +31,6 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
                         $reflength = strlen($ref);
                         if($reflength === 5)
                         {
-
                             $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
                             $req->execute();
                             header('Location: ../index.php');
@@ -64,19 +60,15 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
             $erreur2 = "Une erreur est survenue";
         } 
     }   
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="yann" content="auhtor">
     <link rel="stylesheet" href="../style/global.css">
     <title>Session visiteur</title>
 </head>
-
 <body>
 <main>
 <h1>ajout</h1>
@@ -118,7 +110,6 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     </p>
 </main>
 </body>
-
 </html>
 <?php
 }

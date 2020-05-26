@@ -1,10 +1,8 @@
 <?php
 session_start();
 include 'config.php';
-
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

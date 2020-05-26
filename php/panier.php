@@ -55,5 +55,4 @@ $panier = $recup->fetchAll();
     ?>
     </main>
 </body>
-
 </html>

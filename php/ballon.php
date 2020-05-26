@@ -34,7 +34,6 @@ elseif(isset($_POST['hand']))
     <link rel="stylesheet" href="../style/produit.css">
     <title>Ballon</title>
 </head>
-
 <body>
     <?php
     include '../includes/header.php';
@@ -54,5 +53,4 @@ elseif(isset($_POST['hand']))
         ?>
     </main>
 </body>
-
 </html>

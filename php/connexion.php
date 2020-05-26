@@ -6,11 +6,9 @@ if(isset($_SESSION['mail']))
 }
 session_start();
 include 'config.php';
-
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 $idconnnect = htmlspecialchars($_POST['idconnect']);
 $mdpconnect = sha1($_POST['mdpconnect']);
-
 if(isset($_POST['formconnect']))
 {
     if(!empty($idconnnect) && !empty($mdpconnect))
@@ -43,12 +41,9 @@ if(isset($_POST['formconnect']))
         $erreur = "Tout les champs doivent être complétés";
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="yann" content="autho">
@@ -56,7 +51,6 @@ if(isset($_POST['formconnect']))
     <link rel="stylesheet" href="../style/global.css">
     <title>Connexion</title>
 </head>
-
 <body>
     <?php
         include '../includes/header.php';
@@ -88,5 +82,4 @@ if(isset($_POST['formconnect']))
         </section>
     </main>
 </body>
-
 </html>
