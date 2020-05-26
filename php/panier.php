@@ -33,12 +33,12 @@ $panier = $recup->fetchAll();
             <img src="../medias/<?= $info['ref']?>.jpg" alt="image <?= $info['ref']?>">
             <p>Référence : <?= $info['ref']?></p>
             <form action="" method="post">
-                <input type="number" value="<?= $info['quantite']?>" name="quant">
+                <input type="number" value="<?= $info['quantite']?>" name="quant<?= $info['ref']?>">
                 <input type="submit" value="Modifier la quantité" name="changer">
             </form>
             <?php
             $ref = $info['ref'];
-            $newQuant = $_POST['quant'];
+            $newQuant = $_POST['quant'.$info['ref']];
 
             if(isset($_POST['changer']))
             {
