@@ -39,7 +39,7 @@ $produit = $info->fetchAll();
     include '../includes/header.php';
 ?>
     <main>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post">
             <input type="submit" name="Femme" value="Femme">
             <input type="submit" name="Homme" value="Homme">
             <input type="submit" name="all" value="Tous">

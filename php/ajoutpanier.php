@@ -14,7 +14,7 @@ if($_SESSION['login'])
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ajout panier</title>
+        <title>Ajout</title>
     </head>
     <body>
         <h3>Voulez-vous ajoutez l'article au panier ?</h3>

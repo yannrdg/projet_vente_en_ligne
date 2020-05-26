@@ -40,7 +40,7 @@ elseif(isset($_POST['hand']))
     include '../includes/header.php';
 ?>
     <main>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post">
             <input type="submit" name="foot" value="Football">
             <input type="submit" name="hand" value="Handball">
             <input type="submit" name="all" value="Tous">
