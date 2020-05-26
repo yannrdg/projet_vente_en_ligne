@@ -28,28 +28,28 @@ try
     
         if(!empty($_POST['login']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail']) && !empty($_POST['mail2']) && !empty($_POST['nom']) && !empty($_POST['numero']) && !empty($_POST['rue']) && !empty($_POST['cp']) && !empty($_POST['ville']) && !empty($_POST['cb']) )
         {   
-            $loginlength = strlen($login);
-            if($loginlength <= 20) 
+            $loginLength = strlen($login);
+            if($loginLength <= 20) 
             {
-                $reqlogin = $bdd->prepare("SELECT * FROM VISITEUR WHERE login = ?");
-                $reqlogin->execute(array($login));
-                $loginexist = $reqlogin->rowCount();
-                if($loginexist == 0)
+                $reqLogin = $bdd->prepare("SELECT * FROM visiteur WHERE login = ?");
+                $reqLogin->execute(array($login));
+                $loginExist = $reqLogin->rowCount();
+                if($loginExist == 0)
                 {                
                     if($mail == $mail2)
                     {
                         if(filter_var($mail, FILTER_VALIDATE_EMAIL))
                         {
-                            $reqtitre = $bdd->prepare("SELECT * FROM VISITEUR WHERE mail = ?");
-                            $reqtitre->execute(array($mail));
-                            $emailexist = $reqtitre->rowCount();
-                            if($emailexist == 0)
+                            $reqTitre = $bdd->prepare("SELECT * FROM visiteur WHERE mail = ?");
+                            $reqTitre->execute(array($mail));
+                            $emailExist = $reqTitre->rowCount();
+                            if($emailExist == 0)
                             {
                                 if($mdp == $mdp2)
                                 {
                                     if(is_numeric($numero) == true )
                                     {
-                                        $sth = $bdd->prepare("INSERT INTO VISITEUR(login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
+                                        $sth = $bdd->prepare("INSERT INTO visiteur (login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
                                         $sth->bindParam(':login',$login);
                                         $sth->bindParam(':mdp',$mdp);
                                         $sth->bindParam(':mail',$mail);

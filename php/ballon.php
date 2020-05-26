@@ -2,31 +2,25 @@
 session_start();
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-
-$info = $bdd->prepare("SELECT * FROM PRODUIT ORDER BY date DESC");
+$info = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $exec = $info->execute();
 $produit = $info->fetchAll();
-
 //Bouton de tri
-
 if(isset($_POST['foot']))
 {
-    $foot = $bdd->prepare("SELECT * FROM PRODUIT WHERE nom LIKE '%football%' ORDER BY date DESC");
+    $foot = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%football%' ORDER BY date DESC");
     $exec = $foot->execute();
     $produit = $foot->fetchAll();; 
 }
 elseif(isset($_POST['hand']))
 {
-    $hand = $bdd->prepare("SELECT * FROM PRODUIT WHERE nom LIKE '%handball%' ORDER BY date DESC");
+    $hand = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%handball%' ORDER BY date DESC");
     $exec = $hand->execute();
     $produit = $hand->fetchAll();; 
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="yann" content="auhtor">

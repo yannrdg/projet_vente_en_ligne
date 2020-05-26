@@ -74,7 +74,7 @@ $produit = $info->fetchAll();
             <p><?= $items['descriptif']?></p>
             <img src="medias/<?= $items['ref']?>.jpg" alt="image">
             <p>Référence : <?= $items['ref']?></p>
-            <input type="submit" name="panier" value="Ajouter au panier">
+            <a href="php/ajoutpanier.php?ref=<?= $items['ref']?>">Ajouter au panier</a>
         </section>
         <?php endforeach; ?>
 
