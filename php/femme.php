@@ -2,26 +2,32 @@
 session_start();
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-$info = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
-$exec = $info->execute();
-$produit = $info->fetchAll();
+$femme = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
+$exec = $femme->execute();
+$produitFemme = $femme->fetchAll();
 if(isset($_POST['veste']))
 {
-    $foot = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%veste%' ORDER BY date DESC");
-    $exec = $foot->execute();
-    $produit = $foot->fetchAll();; 
+    $femme = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%veste%' ORDER BY date DESC");
+    $exec = $femme->execute();
+    $produitFemme = $femme->fetchAll();; 
 }
 elseif(isset($_POST['short']))
 {
-    $hand = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%short%' ORDER BY date DESC");
-    $exec = $hand->execute();
-    $produit = $hand->fetchAll();; 
+    $femme = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%short%' ORDER BY date DESC");
+    $exec = $femme->execute();
+    $produitFemme = $femme->fetchAll();; 
 }
 elseif(isset($_POST['tshirt']))
 {
-    $hand = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%t-shirt%' ORDER BY date DESC");
-    $exec = $hand->execute();
-    $produit = $hand->fetchAll();; 
+    $femme = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%t-shirt%' ORDER BY date DESC");
+    $exec = $femme->execute();
+    $produitFemme = $femme->fetchAll();; 
+}
+elseif(isset($_POST['all']))
+{
+    $femme = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
+    $exec = $femme->execute();
+    $produitFemme = $femme->fetchAll();
 }
 ?>
 <!DOCTYPE html>
@@ -42,8 +48,9 @@ elseif(isset($_POST['tshirt']))
             <input type="submit" name="tshirt" value="T-shirt">
             <input type="submit" name="short" value="Short">
             <input type="submit" name="veste" value="Veste">
+            <input type="submit" name="all" value="Tous">
         </form>
-        <?php foreach ($produit as $items): 
+        <?php foreach ($produitFemme as $items): 
             if($items['type'] == 'femme')  
             {
             include '../includes/produit.php';
