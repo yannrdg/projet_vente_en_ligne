@@ -38,29 +38,29 @@ main>section>p:first-of-type{
     text-align: center;
     margin-bottom: 1vw;
     height: 7vw;
-    font-size: 1.1vw;
+    font-size: 1vw;
 }
 
 main>section>a{
     border: none;
     height: auto;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     background-color: #649EFA;
     border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.8) 2px 2px;
     display: block;
-    margin: 1vw auto 2vh auto;
+    margin: 2vw auto 1vw auto;
     text-align: center;
     text-decoration: none;
     color: black;
-    width: 10vw;
+    width: 15vw;
 }
 
 main>section>a:hover{
     height: 4vh;
-    font-size: 1.4vw;
-    transition-duration: 250ms;
-    width: 12vw;
+    font-size: 1.2vw;
+    transition-duration: 500ms;
+    width: 17vw;
 }
 
 main>form{
