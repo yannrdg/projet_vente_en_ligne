@@ -75,6 +75,7 @@ $produit = $recup->fetchAll();
     <meta name="yann" content="auhtor">
     <link rel="stylesheet" href="../style/global.css">
     <script src="../script/admin.js" async></script>
+    <link rel="stylesheet" href="../style/admin.css">
     <title>Page d'administration</title>
 </head>
 <body>
