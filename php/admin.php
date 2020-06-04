@@ -126,6 +126,34 @@ $produit = $recup->fetchAll();
         ?>
             </p>
         </section>
+        <section id="modifisProduits">
+            <table>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Référence</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Modification</th>
+                </tr>
+                <?php foreach ($produit as $itemsProduit): ?>
+                <tr>
+                    <td id="nomProduit"><?= $itemsProduit['nom']?></td>
+                    <td id="descrProduit"><?= $itemsProduit['descriptif']?></td>
+                    <td id="refProduit"><?= $itemsProduit['ref']?></td>
+                    <td id="dateProduit"><?= $itemsProduit['date']?></td>
+                    <td id="typeProduit"><?= $itemsProduit['type']?></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="submit" id="delete" name="supprimer<?= $itemsProduit['ref']?>"
+                                value="Supprimer">
+                            <input type="submit" id="update" name="modifier<?= $itemsProduit['ref']?>" value="Modifier">
+                        </form>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </section>
     </main>
 </body>
 </html>
