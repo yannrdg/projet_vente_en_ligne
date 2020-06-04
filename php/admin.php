@@ -66,7 +66,7 @@ $produit = $recup->fetchAll();
         {
             $erreur2 = "Une erreur est survenue";
         } 
-    }   
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
