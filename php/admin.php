@@ -147,6 +147,17 @@ $produit = $recup->fetchAll();
                         <form action="" method="post">
                             <input type="submit" id="delete" name="supprimer<?= $itemsProduit['ref']?>"
                                 value="Supprimer">
+                            <?php
+                           // ---------- Suppression des produits ----------
+                            $refProduit = $itemsProduit['ref'];
+                            if(isset($_POST['supprimer'.$itemsProduit['ref']]))
+                            {
+                                $supprimer = $bdd->prepare("DELETE FROM produit WHERE ref = :ref");
+                                $supprimer->bindParam(':ref', $refProduit);
+                                $supprimer->execute();
+                                header("Refresh:0");
+                            }
+                            ?>
                             <input type="submit" id="update" name="modifier<?= $itemsProduit['ref']?>" value="Modifier">
                         </form>
                     </td>
