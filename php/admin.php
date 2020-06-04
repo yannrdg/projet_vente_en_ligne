@@ -5,8 +5,12 @@ if($_SESSION['login'] == 'admin')
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
-// ------------ Ajout d'un produit -------------
+// ----------- Affichage des produits -------------
+$recup = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
+$recup->execute();
+$produit = $recup->fetchAll();
 
+// ------------ Ajout d'un produit -------------
     $ref = $_POST['ref'];
     $nom = $_POST['nom'];
     $descriptif = $_POST['descriptif'];
