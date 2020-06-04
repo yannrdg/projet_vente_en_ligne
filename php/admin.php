@@ -4,6 +4,9 @@ if($_SESSION['login'] == 'admin')
 {
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+
+// ------------ Ajout d'un produit -------------
+
     $ref = $_POST['ref'];
     $nom = $_POST['nom'];
     $descriptif = $_POST['descriptif'];
@@ -67,47 +70,58 @@ $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     <meta charset="UTF-8">
     <meta name="yann" content="auhtor">
     <link rel="stylesheet" href="../style/global.css">
-    <title>Session visiteur</title>
+    <script src="../script/admin.js" async></script>
+    <title>Page d'administration</title>
 </head>
 <body>
-<main>
-<h1>ajout</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="ref">Référence du produit</label>
-            <input type="number" id="ref" maxlength="5" name="ref" value="<?php if(isset($ref)) {echo $ref;} ?>">
-        </div>
-        <div>
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" maxlength="50" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
-        </div>
-        <div>
-            <label for="descriptif">Descriptif</label>
-            <textarea id="descriptif" name="descriptif" maxlength="255" row="6" cols="51" value="<?php if(isset($descriptif)) {echo $descriptif;} ?>"></textarea>
-        </div>
-        <div>
-                <label for="type">Catégorie :</label>
-                <select name="type" id="type">
-                    <option value="ballon">Ballon</option>
-                    <option value="femme">Femme</option>
-                    <option value="homme">Homme</option>
-                </select>
-        </div>
-        <div>
-            <label for="">File up</label>
-            <input type="file" name="file" value="déposez" required>
-        </div>
-        <input type="submit" name="ajout" value="ajouter un article">
-    </form>
-    <p>
-        <?php
+    <header>
+        <nav>
+            <button id="ajoutProduit">Ajout produit</button>
+            <button id="modificationProduit">Modification produit</button>
+        </nav>
+    </header>
+    <main>
+        <section id="FormAjoutProduit">
+            <h1>ajout</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="ref">Référence du produit</label>
+                    <input type="number" id="ref" maxlength="5" name="ref"
+                        value="<?php if(isset($ref)) {echo $ref;} ?>">
+                </div>
+                <div>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" maxlength="50" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
+                </div>
+                <div>
+                    <label for="descriptif">Descriptif</label>
+                    <textarea id="descriptif" name="descriptif" maxlength="255" row="6" cols="51"
+                        value="<?php if(isset($descriptif)) {echo $descriptif;} ?>"></textarea>
+                </div>
+                <div>
+                    <label for="type">Catégorie :</label>
+                    <select name="type" id="type">
+                        <option value="ballon">Ballon</option>
+                        <option value="femme">Femme</option>
+                        <option value="homme">Homme</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">File up</label>
+                    <input type="file" name="file" value="déposez" required>
+                </div>
+                <input type="submit" name="ajout" value="ajouter un article">
+            </form>
+            <p>
+                <?php
             if(isset($erreur2))
             {
                 echo $erreur2;
             }
         ?>
-    </p>
-</main>
+            </p>
+        </section>
+    </main>
 </body>
 </html>
 <?php
