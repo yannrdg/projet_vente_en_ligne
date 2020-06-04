@@ -4,30 +4,30 @@ include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 $homme = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $exec = $homme->execute();
-$produitHomme = $homme->fetchAll();
+$produit = $homme->fetchAll();
 if(isset($_POST['veste']))
 {
     $homme = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%veste%' ORDER BY date DESC");
     $exec = $homme->execute();
-    $produitHomme = $homme->fetchAll();
+    $produit = $homme->fetchAll();
 }
 elseif(isset($_POST['short']))
 {
     $homme = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%short%' ORDER BY date DESC");
     $exec = $homme->execute();
-    $produitHomme = $homme->fetchAll();
+    $produit = $homme->fetchAll();
 }
 elseif(isset($_POST['tshirt']))
 {
     $homme = $bdd->prepare("SELECT * FROM produit WHERE nom LIKE '%t-shirt%' ORDER BY date DESC");
     $exec = $homme->execute();
-    $produitHomme = $homme->fetchAll();
+    $produit = $homme->fetchAll();
 }
 elseif(isset($_POST['all']))
 {
     $homme = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
     $exec = $homme->execute();
-    $produitHomme = $homme->fetchAll();; 
+    $produit = $homme->fetchAll();; 
 }
 ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ elseif(isset($_POST['all']))
             <input type="submit" name="veste" value="Veste">
             <input type="submit" name="all" value="Tous">
         </form>
-        <?php foreach ($produitHomme as $items): 
+        <?php foreach ($produit as $items): 
             if($items['type'] == 'homme')  
             {
             include '../includes/produit.php';
