@@ -26,7 +26,7 @@ header>div{
     display: flex;
     flex-flow: row nowrap;
     width: auto;
-    height: 5vh;
+    height: auto;
     border: 3px solid #CDFA4B;
     border-radius: 4px;
 }
@@ -38,7 +38,7 @@ header>div>form>input:first-of-type{
 
 header>div>form>input:last-of-type{
     background-color: #CDFA4B;
-    font-size: 1.8vw;
+    font-size: 2vw;
     border: none;
 }
 
@@ -100,7 +100,7 @@ ul>li{
 }
 
 #deroulant>ul{
-    margin-top: 5vw;
+    margin-top: 12vw;
     padding: 0;
     position: absolute;
     visibility: hidden;

@@ -20,7 +20,7 @@ main>section>img{
     height: 20vw;
     object-fit: contain;
     display: block;
-    margin: auto;
+    margin: auto auto 2vw auto;
 }
 
 main>section>p:last-of-type{
@@ -31,8 +31,9 @@ main>section>p:last-of-type{
 
 main>section>h3{
     text-align: center;
-    margin-bottom: 1vw;
+    margin-bottom: auto;
     font-size: 1.4vw;
+    height: 4vw;
 }
 main>section>p:first-of-type{
     text-align: center;
