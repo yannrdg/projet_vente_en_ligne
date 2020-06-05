@@ -132,7 +132,7 @@ $produit = $recup->fetchAll();
                     <th>Titre</th>
                     <th>Description</th>
                     <th>Référence</th>
-                    <th>Date</th>
+                    <th>Date de la denrière modification</th>
                     <th>Type</th>
                     <th>Modification</th>
                 </tr>
