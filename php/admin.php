@@ -83,6 +83,7 @@ $produit = $recup->fetchAll();
         <nav>
             <button id="ajoutProduit">Ajout produit</button>
             <button id="modificationProduit">Modification produit</button>
+            <button id="gestionVisiteur">Gestion des visiteurs</button>
         </nav>
     </header>
     <main>
@@ -164,6 +165,9 @@ $produit = $recup->fetchAll();
                 </tr>
                 <?php endforeach; ?>
             </table>
+        </section>
+        <section id="visiteurs">
+
         </section>
     </main>
 </body>
