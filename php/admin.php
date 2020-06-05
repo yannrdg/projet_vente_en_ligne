@@ -40,7 +40,7 @@ $produit = $recup->fetchAll();
                         {
                             $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
                             $req->execute();
-                            header('Location: ../index.php');
+                            header('Refresh:0');
                         }
                         else
                         {
