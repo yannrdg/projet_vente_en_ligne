@@ -158,8 +158,8 @@ $produit = $recup->fetchAll();
                                 header("Refresh:0");
                             }
                             ?>
-                            <input type="submit" id="update" name="modifier<?= $itemsProduit['ref']?>" value="Modifier">
                         </form>
+                        <a href="modificationProduit.php?ref=<?= $itemsProduit['ref']?>">Modifier</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
