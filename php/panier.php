@@ -5,7 +5,7 @@ if($_SESSION['login'])
     include 'config.php';
     $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $idp = $_SESSION['idp'];
-    $recup = $bdd->prepare("SELECT contenir.ref, nom, idp, quantite FROM contenir, produit WHERE produit.ref = contenir.ref AND idp = $idp");
+    $recup = $bdd->prepare("SELECT contenir.ref, nom, idp, quantite, contenir.prix, contenir.prixTotal FROM contenir, produit WHERE produit.ref = contenir.ref AND idp = $idp");
     $recup->execute();
     $panier = $recup->fetchAll();
     ?>
@@ -42,6 +42,8 @@ if($_SESSION['login'])
             <section>
                 <h4><?= $info['nom']?></h4>
                 <p>Référence : <?= $info['ref']?></p>
+                <p>Prix unitaire : <?= $info['prix']?></p>
+                <p>Prix total : <?= $info['prixTotal']?></p>
                 <img src="../medias/<?= $info['ref']?>.jpg" alt="image <?= $info['ref']?>">
                 <form action="" method="post">
                     <input type="number" value="<?= $info['quantite']?>" name="quant<?= $info['ref']?>">
@@ -52,12 +54,14 @@ if($_SESSION['login'])
                 <?php
                 $newQuant = $_POST['quant'.$info['ref']];
                 $ref = $info['ref'];
+                $prixTotal = $info['prix'] * $newQuant;
                 if(isset($_POST['changer'.$info['ref']]))
                 {
-                    $changer = $bdd->prepare("UPDATE contenir SET quantite = :newQuant WHERE ref = :ref AND idp = :idp");
+                    $changer = $bdd->prepare("UPDATE contenir SET quantite = :newQuant, prixTotal = :prixTotal WHERE ref = :ref AND idp = :idp");
                     $changer->bindParam(':newQuant', $newQuant);
                     $changer->bindParam(':ref', $ref);
                     $changer->bindParam(':idp', $idp);
+                    $changer->bindParam(':prixTotal', $prixTotal);
                     $changer->execute();
                     header("Refresh:0");
                 }

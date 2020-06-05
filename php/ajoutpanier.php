@@ -11,6 +11,18 @@ if($_SESSION['login'])
     $refExist = $reqRef->rowCount();
     if($refExist == 0)
     {  
+        $reqProduit = $bdd->prepare("SELECT * FROM produit WHERE ref = :ref");
+        $reqProduit->bindParam(':ref',$ref);
+        $reqProduit->execute();
+        $produit = $reqProduit->fetchAll();
+
+        foreach($produit as $info):
+        $idp = $_SESSION['idp'];
+        $quantite = $_POST['quantite'];
+        $prix = $info['prix'];
+        $prixTotal = $info['prix'] * $quantite;
+
+        
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -25,24 +37,20 @@ if($_SESSION['login'])
                 <input type="submit" value="Oui" name="oui">
                 <input type="submit" value="Non" name="non">
                 <input type="number" name="quantite">
+                    <p><?=$prix?></p>
             </form>
         </body>
         </html>
         <?php
         if(isset($_POST['oui']))
         {
-            $reqProduit = $bdd->prepare("SELECT * FROM produit WHERE ref = :ref");
-            $reqProduit->bindParam(':ref',$ref);
-            $reqProduit->execute();
-            $produit = $reqProduit->fetchAll();
             
-            $idp = $_SESSION['idp'];
-            $quantite = $_POST['quantite'];
-            
-            $ajout = $bdd->prepare("INSERT INTO contenir (idp, ref, quantite) VALUES (:idp, :ref, :quantite)");
+            $ajout = $bdd->prepare("INSERT INTO contenir (idp, ref, quantite, prix, prixTotal) VALUES (:idp, :ref, :quantite, :prix, :prixTotal)");
             $ajout->bindParam(':idp', $idp);
             $ajout->bindParam(':ref', $ref);
             $ajout->bindParam(':quantite', $quantite);
+            $ajout->bindParam(':prix', $prix);
+            $ajout->bindParam(':prixTotal', $prixTotal);
             $ajout->execute();
             header('Location: panier.php');
         }
@@ -50,6 +58,7 @@ if($_SESSION['login'])
         {
             header('Location: ../index.php');
         }
+        endforeach;
     }
     else
     {
