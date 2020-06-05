@@ -1,4 +1,3 @@
-
 --
 -- Structure de la table `CONTENIR`
 --
@@ -6,7 +5,9 @@
 CREATE TABLE `CONTENIR` (
   `idp` int(11) NOT NULL,
   `ref` char(5) NOT NULL,
-  `quantite` int(11) DEFAULT NULL
+  `quantite` int(11) DEFAULT NULL,
+  `prix` float NOT NULL,
+  `prixTotal` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -30,8 +31,9 @@ CREATE TABLE `PANIERCDE` (
 
 CREATE TABLE `PRODUIT` (
   `ref` char(5) NOT NULL,
-  `nom` varchar(50) DEFAULT NULL,
+  `nom` varchar(100) DEFAULT NULL,
   `descriptif` varchar(255) DEFAULT NULL,
+  `prix` float NOT NULL,
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `type` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
