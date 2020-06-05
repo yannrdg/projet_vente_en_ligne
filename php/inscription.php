@@ -4,112 +4,110 @@ if(isset($_SESSION['mail']))
 {
     header('Location: ../index.php');
 }
-    $login = htmlspecialchars($_POST['login']);
-    $mail = htmlspecialchars($_POST['mail']);
-    $mail2 = htmlspecialchars($_POST['mail2']);
-    $mdp = sha1($_POST['mdp']);
-    $mdp2 = sha1($_POST['mdp2']);
-    $nom = htmlspecialchars($_POST['nom']);
-    $numero = $_POST['numero'];
-    $rue = htmlspecialchars($_POST['rue']);
-    $cp = $_POST['cp'];
-    $ville = htmlspecialchars($_POST['ville']);
-    $cb = $_POST['cb'];
-try
-{
-    include 'config.php';
-    $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    if(isset($_POST['forminscription']))
-        {
+        $login = htmlspecialchars($_POST['login']);
+        $mail = htmlspecialchars($_POST['mail']);
+        $mail2 = htmlspecialchars($_POST['mail2']);
+        $mdp = sha1($_POST['mdp']);
+        $mdp2 = sha1($_POST['mdp2']);
+        $nom = htmlspecialchars($_POST['nom']);
+        $numero = $_POST['numero'];
+        $rue = htmlspecialchars($_POST['rue']);
+        $cp = $_POST['cp'];
+        $ville = htmlspecialchars($_POST['ville']);
+        $cb = $_POST['cb'];
+    try
+    {
+        include 'config.php';
+        $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-    
-    
-        if(!empty($_POST['login']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail']) && !empty($_POST['mail2']) && !empty($_POST['nom']) && !empty($_POST['numero']) && !empty($_POST['rue']) && !empty($_POST['cp']) && !empty($_POST['ville']) && !empty($_POST['cb']) )
-        {   
-            $loginLength = strlen($login);
-            if($loginLength <= 20) 
+        if(isset($_POST['forminscription']))
             {
-                $reqLogin = $bdd->prepare("SELECT * FROM visiteur WHERE login = ?");
-                $reqLogin->execute(array($login));
-                $loginExist = $reqLogin->rowCount();
-                if($loginExist == 0)
-                {                
-                    if($mail == $mail2)
-                    {
-                        if(filter_var($mail, FILTER_VALIDATE_EMAIL))
+            
+        
+        
+            if(!empty($_POST['login']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail']) && !empty($_POST['mail2']) && !empty($_POST['nom']) && !empty($_POST['numero']) && !empty($_POST['rue']) && !empty($_POST['cp']) && !empty($_POST['ville']) && !empty($_POST['cb']) )
+            {   
+                $loginLength = strlen($login);
+                if($loginLength <= 20) 
+                {
+                    $reqLogin = $bdd->prepare("SELECT * FROM visiteur WHERE login = ?");
+                    $reqLogin->execute(array($login));
+                    $loginExist = $reqLogin->rowCount();
+                    if($loginExist == 0)
+                    {                
+                        if($mail == $mail2)
                         {
-                            $reqTitre = $bdd->prepare("SELECT * FROM visiteur WHERE mail = ?");
-                            $reqTitre->execute(array($mail));
-                            $emailExist = $reqTitre->rowCount();
-                            if($emailExist == 0)
+                            if(filter_var($mail, FILTER_VALIDATE_EMAIL))
                             {
-                                if($mdp == $mdp2)
+                                $reqTitre = $bdd->prepare("SELECT * FROM visiteur WHERE mail = ?");
+                                $reqTitre->execute(array($mail));
+                                $emailExist = $reqTitre->rowCount();
+                                if($emailExist == 0)
                                 {
-                                    if(is_numeric($numero) == true )
+                                    if($mdp == $mdp2)
                                     {
-                                        $sth = $bdd->prepare("INSERT INTO visiteur (login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
-                                        $sth->bindParam(':login',$login);
-                                        $sth->bindParam(':mdp',$mdp);
-                                        $sth->bindParam(':mail',$mail);
-                                        $sth->bindParam(':nom',$nom);
-                                        $sth->bindParam(':numero',$numero);
-                                        $sth->bindParam(':rue',$rue);
-                                        $sth->bindParam(':cp',$cp);
-                                        $sth->bindParam(':ville',$ville);
-                                        $sth->bindParam(':cb',$cb);
-                                        $sth->execute();
-                                        $ajoutlogin = $bdd->prepare("INSERT INTO VISITER (login) VALUES ('$login')");
-                                        $ajoutlogin->execute(array($login));
-                                        $erreur = "Votre inscription a bien été pris en compte !".'</br>'.'Vous allez être redirigé vers la page de connexion.';
-                                        header("refresh:3;url=connexion.php");                                       
+                                        if(is_numeric($numero) == true )
+                                        {
+                                            $sth = $bdd->prepare("INSERT INTO visiteur (login, mdp, mail, nom, numero, rue, cp, ville, cb) VALUES (:login, :mdp, :mail, :nom, :numero, :rue, :cp, :ville, :cb)");  
+                                            $sth->bindParam(':login',$login);
+                                            $sth->bindParam(':mdp',$mdp);
+                                            $sth->bindParam(':mail',$mail);
+                                            $sth->bindParam(':nom',$nom);
+                                            $sth->bindParam(':numero',$numero);
+                                            $sth->bindParam(':rue',$rue);
+                                            $sth->bindParam(':cp',$cp);
+                                            $sth->bindParam(':ville',$ville);
+                                            $sth->bindParam(':cb',$cb);
+                                            $sth->execute();
+                                            $erreur = "Votre inscription a bien été pris en compte !".'</br>'.'Vous allez être redirigé vers la page de connexion.';
+                                            header("refresh:3;url=connexion.php");                                       
+                                        }
+                                        else
+                                        {
+                                            $erreur = "Votre numéro ne doit comporter que des chiffres";
+                                        }
                                     }
-                                    else
+                                    else 
                                     {
-                                        $erreur = "Votre numéro ne doit comporter que des chiffres";
+                                        $erreur = "Vos mots de passe ne correspondent pas";
                                     }
-                                }
-                                else 
+                                }    
+                                else
                                 {
-                                    $erreur = "Vos mots de passe ne correspondent pas";
-                                }
-                            }    
-                            else
+                                    $erreur = "Mail déjà existant";
+                                }         
+                            }
+                            else 
                             {
-                                $erreur = "Mail déjà existant";
-                            }         
+                                $erreur = "Votre adresse mail n'est pas valide";
+                            }
                         }
                         else 
                         {
-                            $erreur = "Votre adresse mail n'est pas valide";
+                            $erreur = "Vos mails ne correpondent pas";
                         }
                     }
-                    else 
+                    else
                     {
-                        $erreur = "Vos mails ne correpondent pas";
-                    }
-                }
-                else
+                        $erreur = "Login déjà existant";
+                    }   
+                } 
+                else 
                 {
-                    $erreur = "Login déjà existant";
-                }   
-            } 
+                    $erreur = "Login doit être inférieur à 20 caratères";
+                }
+            }
             else 
             {
-                $erreur = "Login doit être inférieur à 20 caratères";
+            $erreur = "Tous les champs doivent être complétés";
             }
         }
-        else 
-        {
-          $erreur = "Tous les champs doivent être complétés";
-        }
+        
+    } catch(PPDOException $Exception)
+    {
+        echo 'Impossible de traiter les données. Erreur : '.$Exception->getMessage();
     }
-    
-} catch(PPDOException $Exception)
-{
-    echo 'Impossible de traiter les données. Erreur : '.$Exception->getMessage();
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
