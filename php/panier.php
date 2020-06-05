@@ -77,6 +77,15 @@ if($_SESSION['login'])
         <?php
             endforeach; 
         ?>
+        <p>
+        <?php
+            $sommeRecup = $bdd->prepare("SELECT ROUND(SUM(prixTotal), 2) FROM contenir WHERE idp = :idp");
+            $sommeRecup->bindParam(':idp', $idp);
+            $sommeRecup->execute();
+            $somme = $sommeRecup->fetchAll();
+            echo "Le total du panier est de ".$somme[0][0]."€";
+        ?>
+        </p>
         </main>
     </body>
     </html>
