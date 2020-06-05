@@ -10,6 +10,12 @@ $recup = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $recup->execute();
 $produit = $recup->fetchAll();
 
+//------------- Affichage des visiteurs ------------
+
+$recupVisiteur = $bdd->prepare("SELECT * FROM visiteur");
+$recupVisiteur->execute();
+$visiteurs = $recupVisiteur->fetchAll();
+
 // ------------ Ajout d'un produit -------------
     $ref = $_POST['ref'];
     $nom = $_POST['nom'];
@@ -79,14 +85,16 @@ $produit = $recup->fetchAll();
     <title>Page d'administration</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <?php
+    include '../includes/header.php'
+    ?>
+    <nav>
             <button id="ajoutProduit">Ajout produit</button>
             <button id="modificationProduit">Modification produit</button>
             <button id="gestionVisiteur">Gestion des visiteurs</button>
-        </nav>
-    </header>
+    </nav>
     <main>
+        <h4>Afin de voir les modifications apparaitre, actualisez la page après les modifications apportées</h4>
         <section id="FormAjoutProduit">
             <h1>ajout</h1>
             <form action="" method="post" enctype="multipart/form-data">
@@ -167,7 +175,52 @@ $produit = $recup->fetchAll();
             </table>
         </section>
         <section id="visiteurs">
-
+        <table>
+                <tr>
+                    <th>idp</th>
+                    <th>Login</th>
+                    <th>Mail</th>
+                    <th>Nom</th>
+                    <th>Numero</th>
+                    <th>Rue</th>
+                    <th>Code postal</th>
+                    <th>Ville</th>
+                    <th>N°carte bancaire</th>
+                </tr>
+                <?php foreach ($visiteurs as $infoVisiteur): ?>
+                <tr>
+                    <td><?= $infoVisiteur['idp']?></td>
+                    <td><?= $infoVisiteur['login']?></td>
+                    <td><?= $infoVisiteur['mail']?></td>
+                    <td><?= $infoVisiteur['nom']?></td>
+                    <td><?= $infoVisiteur['numero']?></td>
+                    <td><?= $infoVisiteur['rue']?></td>
+                    <td><?= $infoVisiteur['cp']?></td>
+                    <td><?= $infoVisiteur['ville']?></td>
+                    <td><?= $infoVisiteur['cb']?></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="submit" id="deleteVisiteur" name="supprimerVisiteur<?= $infoVisiteur['idp']?>"
+                                value="Supprimer">
+                            <?php
+                           // ---------- Suppression des produits ----------
+                            $idp = $infoVisiteur['idp'];
+                            if(isset($_POST['supprimerVisiteur'.$infoVisiteur['idp']]))
+                            {
+                                $supprimerVisiteur = $bdd->prepare("DELETE FROM visiteur WHERE idp = :idp");
+                                $supprimerVisiteur->bindParam(':idp', $idp);
+                                $supprimerVisiteur->execute();
+                                $supprimerPanier = $bdd->prepare("DELETE FROM contenir WHERE idp = :idp");
+                                $supprimerPanier->bindParam(':idp', $idp);
+                                $supprimerPanier->execute();
+                                header('refresh:0');
+                            }
+                            ?>
+                        </form>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
         </section>
     </main>
 </body>
