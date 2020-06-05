@@ -47,19 +47,24 @@ if($_SESSION['login'] == 'admin')
     <?php
             $newNom = $_POST['newNom'.$infoProduit['ref']];
             $newDesc = $_POST['newDesc'.$infoProduit['ref']];
-            $newRef = $_POST['newRef'.$infoProduit['ref']];
             $newType = $_POST['newType'.$infoProduit['ref']];
             //Modification des informations du porduit
             if(isset($_POST['modifier'.$infoProduit['ref']]))
             {
-
-                $modifProduit = $bdd->prepare("UPDATE produit SET nom = :newNom, descriptif = :newDesc, date = CURRENT_TIMESTAMP, type = :newType WHERE ref = :ref");
-                $modifProduit->bindParam(':newNom', $newNom);
-                $modifProduit->bindParam(':newDesc', $newDesc);
-                $modifProduit->bindParam(':newType', $newType);
-                $modifProduit->bindParam(':ref', $refProduit);
-                $modifProduit->execute();
-                header('Location: admin.php');
+                if(!empty($newNom) && !empty($newDesc) && !empty($newType))
+                {
+                    $modifProduit = $bdd->prepare("UPDATE produit SET nom = :newNom, descriptif = :newDesc, date = CURRENT_TIMESTAMP, type = :newType WHERE ref = :ref");
+                    $modifProduit->bindParam(':newNom', $newNom);
+                    $modifProduit->bindParam(':newDesc', $newDesc);
+                    $modifProduit->bindParam(':newType', $newType);
+                    $modifProduit->bindParam(':ref', $refProduit);
+                    $modifProduit->execute();
+                    header('Location: admin.php');
+                }
+                else
+                {
+                    echo "Il manque des informations";
+                }
             }
         ?>
 </body>
