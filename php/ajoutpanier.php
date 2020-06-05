@@ -44,7 +44,7 @@ if($_SESSION['login'])
             $ajout->bindParam(':ref', $ref);
             $ajout->bindParam(':quantite', $quantite);
             $ajout->execute();
-            header('Location: ballon.php');
+            header('Location: panier.php');
         }
         elseif(isset($_POST['non']))
         {
