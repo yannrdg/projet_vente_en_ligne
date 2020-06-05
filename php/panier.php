@@ -26,16 +26,19 @@ if($_SESSION['login'])
         <h2>Mon panier</h2>
         <form action="" method="post">
             <input type="submit" name="vider" value="Vider le panier">
-        </form>
             <?php
                 if(isset($_POST['vider']))
                 {
                     $supprimer = $bdd->prepare("DELETE FROM contenir WHERE idp = :idp");
                     $supprimer->bindParam(':idp', $idp);
                     $supprimer->execute();
+                    header("Refresh:0");
                 }
-            foreach ($panier as $info): 
             ?>
+        </form>
+        <?php 
+            foreach ($panier as $info): 
+        ?>
             <section>
                 <h4><?= $info['nom']?></h4>
                 <p>Référence : <?= $info['ref']?></p>
