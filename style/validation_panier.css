@@ -1,0 +1,10 @@
+main>div{
+    width: 2vw;
+    height: 3vw;
+    background-color: red;
+    margin-top: 2vw;
+}
+
+.bleu{
+    background-color: blue;
+}
