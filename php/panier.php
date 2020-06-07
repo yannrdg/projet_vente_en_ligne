@@ -88,7 +88,18 @@ if($_SESSION['login'])
             $sommeRecup->bindParam(':idp', $idp);
             $sommeRecup->execute();
             $somme = $sommeRecup->fetchAll();
-            echo "Le total du panier est de ".$somme[0][0]."€";
+            // Recherche si le panier contient un article
+            $reqSomme = $bdd->prepare("SELECT * FROM contenir WHERE idp = ?");
+            $reqSomme->execute(array($idp));
+            $sommeExist = $reqSomme->rowCount();
+            if($sommeExist == 0)
+            {
+                echo "Votre panier est vide !";
+            }
+            else
+            {
+                echo "Le total du panier est de ".$somme[0][0]."€";
+            }
         ?>
         </p>
         <a href="validationPanier.php">Valider mon panier</a>
