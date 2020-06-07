@@ -2,12 +2,10 @@
 session_start();
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-
 $profil = $bdd->prepare("SELECT * FROM visiteur WHERE idp = :idp");
 $profil->bindParam(':idp', $_SESSION['idp']);
 $profil->execute();
 $infoProfil = $profil->fetchAll();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -58,7 +56,6 @@ $infoProfil = $profil->fetchAll();
     $newCp = $_POST['newCp'];
     $newVille = htmlspecialchars($_POST['newVille']);
     $newCb = $_POST['newCb'];
-
     if(isset($_POST['modifier']))
     {
         if(!empty($newNom) && !empty($newNumero) && !empty($newRue) && !empty($newCp) && !empty($newVille) && !empty($newCb))

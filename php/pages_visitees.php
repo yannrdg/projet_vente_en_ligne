@@ -18,7 +18,6 @@ if($_SESSION['login'] == 'admin')
         include '../includes/header.php';
     ?> 
     <main>
-
         <table>
             <tr>
                 <th>Login visiteur</th>
@@ -29,7 +28,6 @@ if($_SESSION['login'] == 'admin')
             </tr>
         <?php
         //------------- Récupération des logins de la page visiter ------------
-
         $recupVisiteurs = $bdd->prepare("SELECT DISTINCT login FROM visiter");
         $recupVisiteurs->execute();
         $visiteurs = $recupVisiteurs->fetchAll();
@@ -49,7 +47,6 @@ if($_SESSION['login'] == 'admin')
                     $recupIndex->bindParam(':login', $login);
                     $recupIndex->execute();
                     $infosIndex = $recupIndex->fetchAll();
-
                     foreach($infosIndex as $nbrIndex):
                         echo $nbrIndex['index'];
                     endforeach;
@@ -64,7 +61,6 @@ if($_SESSION['login'] == 'admin')
                     $recupHomme->bindParam(':login', $login);
                     $recupHomme->execute();
                     $infosHomme = $recupHomme->fetchAll();
-
                     foreach($infosHomme as $nbrHomme):
                         echo $nbrHomme['homme'];
                     endforeach;
@@ -79,7 +75,6 @@ if($_SESSION['login'] == 'admin')
                     $recupFemme->bindParam(':login', $login);
                     $recupFemme->execute();
                     $infosFemme = $recupFemme->fetchAll();
-
                     foreach($infosFemme as $nbrFemme):
                         echo $nbrFemme['femme'];
                     endforeach;
@@ -94,7 +89,6 @@ if($_SESSION['login'] == 'admin')
                     $recupBallon->bindParam(':login', $login);
                     $recupBallon->execute();
                     $infosBallon = $recupBallon->fetchAll();
-
                     foreach($infosBallon as $nbrBallon):
                         echo $nbrBallon['ballon'];
                     endforeach;
@@ -106,7 +100,6 @@ if($_SESSION['login'] == 'admin')
         ?>
         </table>
     
-
     </main>
     </body>
     </html>

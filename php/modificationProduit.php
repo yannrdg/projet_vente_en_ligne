@@ -8,17 +8,14 @@ if($_SESSION['login'] == 'admin')
     $recupProduit = $bdd->prepare("SELECT * FROM produit WHERE ref = ?");
     $recupProduit->execute(array($refProduit));  
     $produit = $recupProduit->fetchAll();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modification Produit</title>
 </head>
-
 <body>
     <form action="" method="post">
         <table>
@@ -68,7 +65,6 @@ if($_SESSION['login'] == 'admin')
             }
         ?>
 </body>
-
 </html>
 <?php
 }

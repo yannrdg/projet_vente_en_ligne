@@ -16,13 +16,11 @@ if($_SESSION['login'])
         $reqProduit->bindParam(':ref',$ref);
         $reqProduit->execute();
         $produit = $reqProduit->fetchAll();
-
         foreach($produit as $info):
         $idp = $_SESSION['idp'];
         $quantite = $_POST['quantite'];
         $prix = $info['prix'];
         $prixTotal = $info['prix'] * $quantite;
-
         
         ?>
         <!DOCTYPE html>
@@ -47,7 +45,6 @@ if($_SESSION['login'])
         {
             if(!empty($quantite))
             {
-
                 $statutNonVal = 0;
                 $reqIdp = $bdd->prepare("SELECT * FROM paniercde WHERE idp = ?");
                 $reqIdp->execute(array($idp));

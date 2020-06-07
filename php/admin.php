@@ -4,18 +4,14 @@ if($_SESSION['login'] == 'admin')
 {
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-
 // ----------- Récupération de la table produit -------------
 $recup = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $recup->execute();
 $produit = $recup->fetchAll();
-
 //------------- Récupération de la table visiteur ------------
-
 $recupVisiteur = $bdd->prepare("SELECT * FROM visiteur");
 $recupVisiteur->execute();
 $visiteurs = $recupVisiteur->fetchAll();
-
 // ------------ Ajout d'un produit -------------
     $ref = $_POST['ref'];
     $nom = $_POST['nom'];

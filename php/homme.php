@@ -2,7 +2,6 @@
 session_start();
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-
 //Création d'un compteur. Si l'utilisateur est connecté, l'id de la page que j'ai choisi, s'ajoute avec son login dans la table 'visiter'
 if(isset($_SESSION['login']))
 {
