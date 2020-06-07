@@ -5,6 +5,7 @@ if($_SESSION['login'] == 'admin')
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
+
 // ----------- Affichage des produits -------------
 $recup = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $recup->execute();
@@ -213,6 +214,9 @@ $visiteurs = $recupVisiteur->fetchAll();
                                 $supprimerPanier = $bdd->prepare("DELETE FROM contenir WHERE idp = :idp");
                                 $supprimerPanier->bindParam(':idp', $idp);
                                 $supprimerPanier->execute();
+                                $supprimerVisiter = $bdd->prepare("DELETE FROM visiter WHERE login = :login");
+                                $supprimerVisiter->bindParam(':login', $login);
+                                $supprimerVisiter->execute();
                                 header('refresh:0');
                             }
                             ?>
