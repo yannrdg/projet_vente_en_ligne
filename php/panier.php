@@ -76,6 +76,7 @@ if($_SESSION['login'])
                     $supprimer = $bdd->prepare("DELETE FROM contenir WHERE ref = :ref");
                     $supprimer->bindParam(':ref', $ref);
                     $supprimer->execute();
+                    header("Refresh:0");
                 }
                 ?>
             </section>
