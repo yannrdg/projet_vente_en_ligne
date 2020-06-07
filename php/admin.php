@@ -14,9 +14,10 @@ $recupVisiteur->execute();
 $visiteurs = $recupVisiteur->fetchAll();
 // ------------ Ajout d'un produit -------------
     $ref = $_POST['ref'];
-    $nom = $_POST['nom'];
-    $descriptif = $_POST['descriptif'];
+    $nom = htmlspecialchars($_POST['nom']);
+    $descriptif = htmlspecialchars($_POST['descriptif']);
     $type = $_POST['type'];
+    $prix = htmlspecialchars($_POST['prix']);
     $filename = $_FILES['file']['name'];
     $filetmpname = $_FILES['file']['tmp_name'];
     $folder = '../medias/';
@@ -28,10 +29,9 @@ $visiteurs = $recupVisiteur->fetchAll();
         {
             if($extension == 'jpg')
             {
-                move_uploaded_file($filetmpname, $folder.$newName);
-                if(!empty($ref) && !empty($nom) && !empty($descriptif))
+                if(!empty($ref) && !empty($nom) && !empty($descriptif) && !empty($prix) && !empty($type))
                 {       
-                    $reqref = $bdd->prepare("SELECT * FROM PRODUIT WHERE ref = ?");
+                    $reqref = $bdd->prepare("SELECT * FROM produit WHERE ref = ?");
                     $reqref->execute(array($ref));
                     $refexist = $reqref->rowCount();
                     if($refexist == 0)
@@ -41,9 +41,15 @@ $visiteurs = $recupVisiteur->fetchAll();
                         if($reflength === 5)
                         {
                             //Insertion dans la bdd
-                            $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
-                            $req->execute();
-                            header('Refresh:0');
+                            $ajoutProduit = $bdd->prepare("INSERT INTO produit (ref, nom, descriptif, prix, date, type) VALUES (:ref, :nom, :descriptif, :prix, CURRENT_TIMESTAMP, :type)");
+                            $ajoutProduit->bindParam(':ref', $ref);
+                            $ajoutProduit->bindParam(':nom', $nom);
+                            $ajoutProduit->bindParam(':descriptif', $descriptif);
+                            $ajoutProduit->bindParam(':prix', $prix);
+                            $ajoutProduit->bindParam(':type', $type);
+                            $ajoutProduit->execute();
+                            move_uploaded_file($filetmpname, $folder.$newName);
+                            $erreur2 = "Le produit a bien été ajouté";
                         }
                         else
                         {
@@ -98,17 +104,22 @@ $visiteurs = $recupVisiteur->fetchAll();
             <form action="" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="ref">Référence du produit</label>
-                    <input type="number" id="ref" maxlength="5" name="ref"
+                    <input type="number" id="ref" maxlength="5" name="ref" min="0"
                         value="<?php if(isset($ref)) {echo $ref;} ?>">
                 </div>
                 <div>
                     <label for="nom">Nom</label>
-                    <input type="text" id="nom" maxlength="50" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
+                    <input type="text" id="nom" maxlength="100" name="nom" value="<?php if(isset($nom)) {echo $nom;} ?>">
                 </div>
                 <div>
                     <label for="descriptif">Descriptif</label>
                     <textarea id="descriptif" name="descriptif" maxlength="255" row="6" cols="51"
                         value="<?php if(isset($descriptif)) {echo $descriptif;} ?>"></textarea>
+                </div>
+                <div>
+                    <label for="prix">Prix</label>
+                    <input type="text" id="prix" maxlength="10" name="prix" min="0" placeholder="55.55"
+                        value="<?php if(isset($prix)) {echo $prix;} ?>">
                 </div>
                 <div>
                     <label for="type">Catégorie :</label>
@@ -120,18 +131,18 @@ $visiteurs = $recupVisiteur->fetchAll();
                 </div>
                 <div>
                     <label for="">File up</label>
-                    <input type="file" name="file" value="déposez" required>
+                    <input type="file" name="file" value="déposez">
                 </div>
                 <input type="submit" name="ajout" value="ajouter un article">
-            </form>
-            <p>
+                <p>
                 <?php
             if(isset($erreur2))
             {
                 echo $erreur2;
             }
-        ?>
+            ?>
             </p>
+            </form>
         </section>
         <section id="modifisProduits">
             <table>
