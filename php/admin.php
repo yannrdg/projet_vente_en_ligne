@@ -5,7 +5,6 @@ if($_SESSION['login'] == 'admin')
 include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
-
 // ----------- Récupération de la table produit -------------
 $recup = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $recup->execute();

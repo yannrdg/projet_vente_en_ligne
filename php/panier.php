@@ -33,6 +33,12 @@ if($_SESSION['login'])
                     $supprimer->bindParam(':idp', $idp);
                     $supprimer->execute();
                     header("Refresh:0");
+                    $statutPanierAnnule = -1;
+                    $panierAnnule = $bdd->prepare("UPDATE paniercde SET statut = :statut, dt = CURRENT_TIMESTAMP WHERE idp = :idp");
+                    $panierAnnule->bindParam(':statut', $statutPanierAnnule);
+                    $panierAnnule->bindParam(':idp', $idp);
+                    $panierAnnule->execute();
+                    header("Refresh:0");
                 }
             ?>
         </form>
@@ -70,7 +76,6 @@ if($_SESSION['login'])
                     $supprimer = $bdd->prepare("DELETE FROM contenir WHERE ref = :ref");
                     $supprimer->bindParam(':ref', $ref);
                     $supprimer->execute();
-                    header("Refresh:0");
                 }
                 ?>
             </section>

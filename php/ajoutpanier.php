@@ -6,6 +6,7 @@ if($_SESSION['login'])
     $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
     $ref = $_GET['ref'];
     $idp = $_SESSION['idp'];
+    $login = $_SESSION['login'];
     $reqRef = $bdd->prepare("SELECT * FROM contenir WHERE ref = ? AND idp = ?");
     $reqRef->execute(array($ref, $idp));
     $refExist = $reqRef->rowCount();
@@ -44,15 +45,41 @@ if($_SESSION['login'])
         <?php
         if(isset($_POST['oui']))
         {
-            
-            $ajout = $bdd->prepare("INSERT INTO contenir (idp, ref, quantite, prix, prixTotal) VALUES (:idp, :ref, :quantite, :prix, :prixTotal)");
-            $ajout->bindParam(':idp', $idp);
-            $ajout->bindParam(':ref', $ref);
-            $ajout->bindParam(':quantite', $quantite);
-            $ajout->bindParam(':prix', $prix);
-            $ajout->bindParam(':prixTotal', $prixTotal);
-            $ajout->execute();
-            header('Location: panier.php');
+            if(!empty($quantite))
+            {
+
+                $statutNonVal = 0;
+                $reqIdp = $bdd->prepare("SELECT * FROM paniercde WHERE idp = ?");
+                $reqIdp->execute(array($idp));
+                $idpExist = $reqIdp->rowCount();
+                if($idpExist == 0)
+                {   
+                    $panierNonVal = $bdd->prepare("INSERT INTO paniercde (idp, login, statut) VALUES (:idp, :login, :statut)");
+                    $panierNonVal->bindParam(':idp', $idp);
+                    $panierNonVal->bindParam(':login', $login);
+                    $panierNonVal->bindParam(':statut', $statutNonVal);
+                    $panierNonVal->execute();
+                }
+                else 
+                {
+                    $panierNonVal = $bdd->prepare("UPDATE paniercde SET statut = :statut WHERE idp = :idp");
+                    $panierNonVal->bindParam(':statut', $statutNonVal);
+                    $panierNonVal->bindParam(':idp', $idp);
+                    $panierNonVal->execute();
+                }
+                $ajout = $bdd->prepare("INSERT INTO contenir (idp, ref, quantite, prix, prixTotal) VALUES (:idp, :ref, :quantite, :prix, :prixTotal)");
+                $ajout->bindParam(':idp', $idp);
+                $ajout->bindParam(':ref', $ref);
+                $ajout->bindParam(':quantite', $quantite);
+                $ajout->bindParam(':prix', $prix);
+                $ajout->bindParam(':prixTotal', $prixTotal);
+                $ajout->execute();
+                header('Location: panier.php');
+            }
+            else
+            {
+                echo "Il manque la quantité";
+            }
         }
         elseif(isset($_POST['non']))
         {
