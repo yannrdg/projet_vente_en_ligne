@@ -157,7 +157,7 @@ if(isset($_SESSION['mail']))
                 </div>
                 <div>
                     <label for="numero">Numéro de téléphone : </label>
-                    <input type="text" id="numero" name="numero" size="15" placeholder="0909090909" maxlength="11"
+                    <input type="number" id="numero" name="numero" size="15" placeholder="0909090909" maxlength="11" min="0"
                         value="<?php if(isset($numero)){ echo $numero; } ?>">
                 </div>
                 <div>
@@ -167,7 +167,7 @@ if(isset($_SESSION['mail']))
                 </div>
                 <div>
                     <label for="cp">Code postal : </label>
-                    <input type="text" id="cp" name="cp" size="5" maxlength="5"
+                    <input type="number" id="cp" name="cp" size="5" maxlength="5" min="0"
                         value="<?php if(isset($cp)){ echo $cp; } ?>">
                 </div>
                 <div>

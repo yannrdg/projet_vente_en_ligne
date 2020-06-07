@@ -37,7 +37,7 @@ if($_SESSION['login'])
             <form action="" method="post">
                 <input type="submit" value="Oui" name="oui">
                 <input type="submit" value="Non" name="non">
-                <input type="number" name="quantite">
+                <input type="number" name="quantite" min="0" maxlength="11">
                     <p><?=$prix?></p>
             </form>
         </body>

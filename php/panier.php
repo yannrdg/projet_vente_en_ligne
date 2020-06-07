@@ -84,7 +84,7 @@ if($_SESSION['login'])
                 <p>Prix total : <?= $info['prixTotal']?></p>
                 <img src="../medias/<?= $info['ref']?>.jpg" alt="image <?= $info['ref']?>">
                 <form action="" method="post">
-                    <input type="number" value="<?= $info['quantite']?>" name="quant<?= $info['ref']?>">
+                    <input type="number" value="<?= $info['quantite']?>" name="quant<?= $info['ref']?>" maxlength="11" min="0">
                     <input type="submit" value="Modifier la quantité" name="changer<?= $info['ref']?>"></br>
                     <label for="delete"></label>
                     <input type="submit" value="Supprimer l'article du panier" name="delete<?= $info['ref']?>" id="delete">
