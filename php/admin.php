@@ -6,12 +6,12 @@ include 'config.php';
 $bdd = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
 
-// ----------- Affichage des produits -------------
+// ----------- Récupération de la table produit -------------
 $recup = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $recup->execute();
 $produit = $recup->fetchAll();
 
-//------------- Affichage des visiteurs ------------
+//------------- Récupération de la table visiteur ------------
 
 $recupVisiteur = $bdd->prepare("SELECT * FROM visiteur");
 $recupVisiteur->execute();
@@ -94,7 +94,7 @@ $visiteurs = $recupVisiteur->fetchAll();
             <button id="ajoutProduit">Ajout produit</button>
             <button id="modificationProduit">Modification produit</button>
             <button id="gestionVisiteur">Gestion des visiteurs</button>
-            <a href="pages_visitees.php"></a>
+            <a href="pages_visitees.php">Pages visitées</a>
     </nav>
     <main>
         <h4>Afin de voir les modifications apparaitre, actualisez la page après les modifications apportées</h4>
