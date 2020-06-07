@@ -93,6 +93,7 @@ $visiteurs = $recupVisiteur->fetchAll();
             <button id="ajoutProduit">Ajout produit</button>
             <button id="modificationProduit">Modification produit</button>
             <button id="gestionVisiteur">Gestion des visiteurs</button>
+            <a href="pages_visitees.php"></a>
     </nav>
     <main>
         <h4>Afin de voir les modifications apparaitre, actualisez la page après les modifications apportées</h4>
