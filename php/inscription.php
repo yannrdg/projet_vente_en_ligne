@@ -22,10 +22,7 @@ if(isset($_SESSION['mail']))
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         if(isset($_POST['forminscription']))
-            {
-            
-        
-        
+        {
             if(!empty($_POST['login']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail']) && !empty($_POST['mail2']) && !empty($_POST['nom']) && !empty($_POST['numero']) && !empty($_POST['rue']) && !empty($_POST['cp']) && !empty($_POST['ville']) && !empty($_POST['cb']) )
             {   
                 $loginLength = strlen($login);
@@ -40,9 +37,9 @@ if(isset($_SESSION['mail']))
                         {
                             if(filter_var($mail, FILTER_VALIDATE_EMAIL))
                             {
-                                $reqTitre = $bdd->prepare("SELECT * FROM visiteur WHERE mail = ?");
-                                $reqTitre->execute(array($mail));
-                                $emailExist = $reqTitre->rowCount();
+                                $reqEmail = $bdd->prepare("SELECT * FROM visiteur WHERE mail = ?");
+                                $reqEmail->execute(array($mail));
+                                $emailExist = $reqEmail->rowCount();
                                 if($emailExist == 0)
                                 {
                                     if($mdp == $mdp2)

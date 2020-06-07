@@ -45,6 +45,7 @@ $visiteurs = $recupVisiteur->fetchAll();
                         $reflength = strlen($ref);
                         if($reflength === 5)
                         {
+                            //Insertion dans la bdd
                             $req = $bdd->prepare("INSERT INTO PRODUIT (ref, nom, descriptif, type) VALUES ('$ref', '$nom', '$descriptif', '$type')");
                             $req->execute();
                             header('Refresh:0');
@@ -207,6 +208,7 @@ $visiteurs = $recupVisiteur->fetchAll();
                             <?php
                            // ---------- Suppression des produits ----------
                             $idp = $infoVisiteur['idp'];
+                            $login = $infoVisiteur['login'];
                             if(isset($_POST['supprimerVisiteur'.$infoVisiteur['idp']]))
                             {
                                 $supprimerVisiteur = $bdd->prepare("DELETE FROM visiteur WHERE idp = :idp");
