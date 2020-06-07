@@ -8,6 +8,11 @@ if($_SESSION['login'])
     $recup = $bdd->prepare("SELECT contenir.ref, nom, idp, quantite, contenir.prix, contenir.prixTotal FROM contenir, produit WHERE produit.ref = contenir.ref AND idp = $idp");
     $recup->execute();
     $panier = $recup->fetchAll();
+    // Récupération du statut de la commande
+    $reqStatut = $bdd->prepare("SELECT statut FROM paniercde WHERE idp = :idp");
+    $reqStatut->bindParam(':idp', $idp);
+    $reqStatut->execute();
+    $nivStatut = $reqStatut->fetchAll();
     ?>
     <!DOCTYPE html>
     <html lang="fr">
@@ -16,6 +21,7 @@ if($_SESSION['login'])
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../style/global.css">
         <link rel="stylesheet" href="../style/panier.css">
+        <link rel="stylesheet" href="../style/validation_panier.css">
         <title>Panier</title>
     </head>
     <body>
@@ -24,17 +30,43 @@ if($_SESSION['login'])
         ?>
         <main>
         <h2>Mon panier</h2>
+        <?php
+            if($nivStatut[0][0] == -1)
+            {
+                echo '<div id="nonVal"></div>';
+                echo '<div id="val"></div>';
+                echo '<div id="priseCompte"></div>';
+                echo '<div id="envoye"></div>';
+            }
+            elseif($nivStatut[0][0] == 0)
+            {
+                echo '<div id="nonVal" class="bleu"></div>';
+                echo '<div id="val"></div>';
+                echo '<div id="priseCompte"></div>';
+                echo '<div id="envoye"></div>';
+            }
+        ?>
         <form action="" method="post">
+            <input type="submit" name="commander" value="Commander">
             <input type="submit" name="vider" value="Vider le panier">
             <?php
-                if(isset($_POST['vider']))
+                if(isset($_POST['commander']))
+                {
+                    $statutPanierValide = 1;
+                    $panierAnnule = $bdd->prepare("UPDATE paniercde SET statut = :statut WHERE idp = :idp");
+                    $panierAnnule->bindParam(':statut', $statutPanierValide);
+                    $panierAnnule->bindParam(':idp', $idp);
+                    $panierAnnule->execute();
+                    header('Location: validationPanier.php');
+                }
+                elseif(isset($_POST['vider']))
                 {
                     $supprimer = $bdd->prepare("DELETE FROM contenir WHERE idp = :idp");
                     $supprimer->bindParam(':idp', $idp);
                     $supprimer->execute();
                     header("Refresh:0");
                     $statutPanierAnnule = -1;
-                    $panierAnnule = $bdd->prepare("UPDATE paniercde SET statut = :statut, dt = CURRENT_TIMESTAMP WHERE idp = :idp");
+                    $panierAnnule = $bdd->prepare("UPDATE paniercde SET statut = :statut WHERE idp = :idp");
                     $panierAnnule->bindParam(':statut', $statutPanierAnnule);
                     $panierAnnule->bindParam(':idp', $idp);
                     $panierAnnule->execute();
