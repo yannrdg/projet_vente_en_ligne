@@ -8,7 +8,9 @@ if($_SESSION['login'])
     $idp = $_SESSION['idp'];
     $login = $_SESSION['login'];
     $reqRef = $bdd->prepare("SELECT * FROM contenir WHERE ref = ? AND idp = ?");
-    $reqRef->execute(array($ref, $idp));
+    $reqRef->bindParam(':ref',$ref);
+    $reqRef->bindParam(':idp',$idp);
+    $reqRef->execute();
     $refExist = $reqRef->rowCount();
     if($refExist == 0)
     {  
