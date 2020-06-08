@@ -7,7 +7,7 @@ if($_SESSION['login'])
     $ref = $_GET['ref'];
     $idp = $_SESSION['idp'];
     $login = $_SESSION['login'];
-    $reqRef = $bdd->prepare("SELECT * FROM contenir WHERE ref = ? AND idp = ?");
+    $reqRef = $bdd->prepare("SELECT * FROM contenir WHERE ref = :ref AND idp = :idp");
     $reqRef->bindParam(':ref',$ref);
     $reqRef->bindParam(':idp',$idp);
     $reqRef->execute();

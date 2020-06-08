@@ -13,7 +13,7 @@ if(isset($_SESSION['login']))
     $compteur->bindParam(':idpage', $idpage);
     $compteur->execute();
 }
-$info = $bdd->prepare("SELECT * FROM PRODUIT ORDER BY date DESC");
+$info = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $exec = $info->execute();
 $produit = $info->fetchAll();
 ?>

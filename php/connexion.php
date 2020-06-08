@@ -13,7 +13,7 @@ if(isset($_POST['formconnect']))
 {
     if(!empty($idconnnect) && !empty($mdpconnect))
     {
-        $requser = $bdd->prepare("SELECT * FROM VISITEUR WHERE (login = '$idconnnect' || mail = '$idconnnect') && mdp = '$mdpconnect'");
+        $requser = $bdd->prepare("SELECT * FROM visiteur WHERE (login = '$idconnnect' || mail = '$idconnnect') && mdp = '$mdpconnect'");
         $requser->execute(array($idconnnect, $mdpconnect));
         $userexist = $requser->rowCount();
         if($userexist == 1)
