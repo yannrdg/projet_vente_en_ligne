@@ -38,8 +38,8 @@
             <li><a id="deco" href="deconnexion.php">Deconnectez-vous</a></li>
         </ul>
     </nav>
-    <a id="panier" href="panier.php">Mon panier</a>
     <?php
+            <a id="panier" href="panier.php"><img src="../medias/panier.png" alt="panier"></a>
             }
             else
             {
