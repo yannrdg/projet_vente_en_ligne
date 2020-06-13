@@ -7,10 +7,8 @@ if(isset($_SESSION['login']))
 {
     $login = $_SESSION['login'];
     $idpage = 3;
-    $compteur = $bdd->prepare("INSERT INTO visiter (login, idpage) VALUES (:login, :idpage)");
-    $compteur->bindParam(':login', $login);
-    $compteur->bindParam(':idpage', $idpage);
-    $compteur->execute();
+    $compteur = $bdd->prepare("INSERT INTO visiter (login, idpage) VALUES (?, ?)");
+    $compteur->execute(array($login, $idpage));
 }
 $info = $bdd->prepare("SELECT * FROM produit ORDER BY date DESC");
 $exec = $info->execute();
