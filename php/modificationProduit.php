@@ -64,7 +64,10 @@ if($_SESSION['login'] == 'admin')
                 }
             }
         ?>
+    </main>
+    <?php
+    include '../includes/footer.php';
+    ?>
 </body>
 </html>
 <?php
-}

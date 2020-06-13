@@ -90,6 +90,12 @@ if($_SESSION['login'])
     {
         echo "Vous avez déjà ajoutez cette article";
     }
+    <?php
+    include '../includes/footer.php';
+    ?>
+</body>
+</html>
+<?php
 }
 else
 {

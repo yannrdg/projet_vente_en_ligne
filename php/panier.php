@@ -134,11 +134,11 @@ if($_SESSION['login'])
                 echo "Le total du panier est de ".$somme[0][0]."€";
             }
         ?>
-        </p>
-        <a href="validationPanier.php">Valider mon panier</a>
-        </main>
-    </body>
-    </html>
+    <?php
+        include '../includes/footer.php';
+    ?>
+</body>
+</html>
 <?php
 }
 else

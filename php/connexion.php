@@ -81,5 +81,8 @@ if(isset($_POST['formconnect']))
             <a href="inscription.php">Première connexion</a>
         </section>
     </main>
+    <?php
+    include '../includes/footer.php';
+    ?>
 </body>
 </html>

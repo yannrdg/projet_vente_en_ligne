@@ -54,5 +54,8 @@ elseif(isset($_POST['hand']))
             endforeach; 
         ?>
     </main>
+    <?php
+    include '../includes/footer.php';
+    ?>
 </body>
 </html>

@@ -192,5 +192,8 @@ if(isset($_SESSION['mail']))
             </div>
         </form>
     </main>
+    <?php
+    include '../includes/footer.php';
+    ?>
 </body>
 </html>

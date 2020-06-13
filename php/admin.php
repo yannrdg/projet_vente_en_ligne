@@ -236,6 +236,9 @@ $visiteurs = $recupVisiteur->fetchAll();
             </table>
         </section>
     </main>
+    <?php
+    include '../includes/footer.php';
+    ?>
 </body>
 </html>
 <?php

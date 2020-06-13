@@ -101,6 +101,9 @@ if($_SESSION['login'] == 'admin')
         </table>
     
     </main>
+    <?php
+        include '../includes/footer.php';
+    ?> 
     </body>
     </html>
 <?php

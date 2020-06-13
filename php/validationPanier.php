@@ -71,9 +71,12 @@ if($_SESSION['login'])
                         echo '<div id="envoye" class="bleu"></div>';
                     }
                 ?>
-            </main>
-        </body>
-        </html>
+    <?php
+                include '../includes/footer.php';
+            ?>
+</body>
+
+</html>
 <?php
     }
     else

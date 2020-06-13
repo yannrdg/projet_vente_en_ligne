@@ -66,5 +66,8 @@ elseif(isset($_POST['all']))
             endforeach; 
         ?>
     </main>
+    <?php
+    include '../includes/footer.php';
+    ?>
 </body>
 </html>
